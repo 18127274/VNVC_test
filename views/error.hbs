@@ -1,0 +1,175 @@
+
+<script type="text/javascript" src="../javascripts/booking.js"> </script>
+
+
+<script>
+    var arr = [1, 2, ''];
+    console.log(arr);
+
+    arr = arr.filter(item => item !== '');
+    console.log(arr);
+
+    ham_timtengoivacxintheoid((result)=>{
+        console.log(result);
+    });
+
+    ham_timtenkhachhangtheoid("akRmeHcLX39OuQiWZj9ut", (result)=>{
+         console.log(result);
+    });
+
+
+function list_view_cus2() {
+    // hien thi dc ten nguoi tiem, cac goi vac xin, trung tam tiem, tong tien
+    var id_dh = localStorage.getItem("id_donhang");
+    console.log(id_dh);
+    console.log("tao vao roi ne");
+
+    ham_getdetailbooking_duatren_madonhang(id_dh, (result) => {
+			console.log("chi tietdon hang", result);
+			var ele = document.getElementById('list_cus');
+			//xy ly di vao dschitiet 
+			for (var i = 0; i < result.payload.DSChiTiet.length; i++) {
+				ham_timtengoivacxintheoid((result1) => {
+					console.log("chi tiet goi tiem", result1);
+					console.log(result.payload.DSChiTiet.length);
+					console.log(i);
+					console.log(result.payload.DSChiTiet[i]);
+					console.log(result.payload.DSChiTiet[0]);
+					
+				})
+			}
+		});
+
+    ham_getdetailbooking_duatren_madonhang(id_dh, (result) => {
+            console.log("chi tietdon hang", result);
+            var ele = document.getElementById('list_cus');
+            //xy ly di vao dschitiet 
+            for (var i = 0; i <= result.payload.DSChiTiet.length; i++) {
+                ham_timtengoivacxintheoid((result1) => {
+                        console.log("chi tiet goi tiem", result1);
+                        for (var j = 0; j <= result.payload.DSChiTiet[i].DSmua; j++) {
+                            for (var k = 0; k <= result1.payload.length; k++) {
+                                console.log("id trong ds mua: ", result.payload.DSChiTiet[i].DSmua[j]);
+                                console.log("id trong get all vacxin: ", result1.payload[k].id);
+                                if (result.payload.DSChiTiet[i].DSmua[j] == result1.payload[k].id) { //so sanh id goi tiem
+                                    var string_goivx = string_goivx + result1.payload[k].Ten + ',';
+                                }
+                            }
+                            console.log("id kh trong ds mua: ", result.payload.DSChiTiet[i].MaKH);
+                            ham_timtenkhachhangtheoid(result.payload.DSChiTiet[i].MaKH, result2) => { // so sanh id kh
+                                ele.innerHTML = ele.innerHTML +
+                                    //ho ten(mqh), tengoivacxin, tong tien 
+                                    " <
+                                    div class = \"col-lg-6\">" + result2.Ten + '(' + result.payload.DSChiTiet[i].MoiQuanHe + ')' + "</div>
+                                " + " <
+                                p > < /p>
+                                "
+                                " <
+                                div class = \"col-lg-6\">" + string_goivx + "</div>
+                                " + " <
+                                p > < /p>
+                                "
+                                " <
+                                div class = \"col-lg-6\">" + result.payload.DonHang.TongTien + "</div>
+                                " + " <
+                                p > < /p>
+                                ";
+                                //view data len
+                            })
+                    }
+                })
+        }
+        document.getElementById("list_cus").innerHTML = ele.innerHTML;
+    });
+}
+
+/*ham_getdetailbooking_duatren_madonhang(id_dh, (result) => {
+			console.log("chi tietdon hang", result);
+			var ele = document.getElementById('list_cus');
+			//xy ly di vao dschitiet 
+			for (var i = 0; i <= result.payload.DSChiTiet.length; i++) {
+				ham_timtengoivacxintheoid((result1) => {
+					console.log("chi tiet goi tiem", result1);
+					for (var j = 0; j <= result.payload.DSChiTiet[i].DSmua; j++) {
+						for (var k = 0; k <= result1.payload.length; k++) {
+							console.log("id trong ds mua: ", result.payload.DSChiTiet[i].DSmua[j]);
+							console.log("id trong get all vacxin: ", result1.payload[k].id);
+							if (result.payload.DSChiTiet[i].DSmua[j] == result1.payload[k].id) { //so sanh id goi tiem
+								var string_goivx = string_goivx + result1.payload[k].Ten + ',';
+							}
+
+						}
+						console.log("id kh trong ds mua: ", result.payload.DSChiTiet[i].MaKH);
+						ham_timtenkhachhangtheoid(result.payload.DSChiTiet[i].MaKH, result2) => {// so sanh id kh
+							ele.innerHTML = ele.innerHTML +
+								//ho ten(mqh), tengoivacxin, tong tien 
+								"<div class=\"col-lg-6\">" + result2.Ten + '(' + result.payload.DSChiTiet[i].MoiQuanHe + ')' + "</div>" + "<p></p>"
+							"<div class=\"col-lg-6\">" + string_goivx + "</div>" + "<p></p>"
+							"<div class=\"col-lg-6\">" + result.payload.DonHang.TongTien + "</div>" + "<p></p>";
+							//view data len
+						});
+			}
+		});
+	}
+	document.getElementById("list_cus").innerHTML = ele.innerHTML;
+		}); */
+</script>
+
+
+
+<script>
+	function list_all_category_vacxin(id, id_menu) {
+		console.log(id);
+		console.log(id_menu);
+		document.getElementById(id_menu).innerHTML = "";
+
+		if (id = 0) {
+			get_all_phanloai((result)=>{
+				for (var i = 0; i < result.payload.length; i++) {
+					list_all_goivacxin((result1)=>{
+					for (var j = 0; j < birds.payload.length; j++) {
+						ele.innerHTML = ele.innerHTML +
+						"<ul id=\"category-tabs\">" + 
+						"<li>" +" <a href=\"javascript:void\" class=\"main-category\">" + payload[i].Ten</a>
+						<ul class="list-group">
+						<li class="list-group-item">
+						<input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+										
+						</li>
+						</ul>
+						</li>
+						</ul>
+					}
+					});
+				}
+				document.getElementById(id_menu).innerHTML = ele.innerHTML;
+			})
+
+			list_all_goivacxin((result) => {
+				var birds = result;
+				console.log(result);
+				var ele = document.getElementById(id_menu);
+				for (var i = 0; i < birds.payload.length; i++) {
+					ele.innerHTML = ele.innerHTML +
+					"<ul id=\"category-tabs\">" + 
+					"<li>" +" <a href=\"javascript:void\" class=\"main-category\">" + payload.</a>
+					<ul class="list-group">
+					<li class="list-group-item">
+					<input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+										Gói vắc xin linh động
+					</li>
+					</ul>
+					</li>
+					</ul>
+				}
+				document.getElementById(id_menu).innerHTML = ele.innerHTML;
+			});
+		}
+		else {
+
+		}
+
+
+	}
+</script>
+
