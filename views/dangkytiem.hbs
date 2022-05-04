@@ -84,8 +84,10 @@
 
 						<ul class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" href="#home"></a></li>
-							<li><a data-toggle="tab" href="#menu1" onclick="list_all_category_vacxin(0, 'menu1')"> Vắc xin gói</a></li>
-							<li><a data-toggle="tab" href="#menu2" onclick="list_all_category_vacxin(1, 'menu2')"> Vắc xin lẻ</a></li>
+							<li><a data-toggle="tab" href="#menu1" onclick="list_all_category_vacxin(0, 'menu1')"> Vắc
+									xin gói</a></li>
+							<li><a data-toggle="tab" href="#menu2" onclick="list_all_category_vacxin(1, 'menu2')"> Vắc
+									xin lẻ</a></li>
 						</ul>
 
 						<div class="tab-content">
@@ -93,7 +95,8 @@
 								<p>*Chọn gói vắc xin</p>
 								{{!-- hien thi vac xin goi --}}
 								<ul id="category-tabs">
-									{{!-- <li><a href="javascript:void" class="main-category">Vắc xin cho trẻ em 0/9 tháng</a>
+									{{!-- <li><a href="javascript:void" class="main-category">Vắc xin cho trẻ em 0/9
+											tháng</a>
 										<ul class="list-group">
 											<li class="list-group-item">
 												<input class="form-check-input me-1" type="checkbox" value=""
@@ -137,7 +140,7 @@
 						</div>
 					</form>
 					<div class="col-12">
-						<form action="/dangkytiem_lienhe" id = "add1">
+						<form action="/dangkytiem_lienhe" id="add1">
 							<input type="submit" class="btn btn-primary" value="Tiếp tục">
 						</form>
 					</div>
@@ -256,52 +259,53 @@
 {{!-- hien thi theo lua chon vac xin goi hoac vac xin le --}}
 <script>
 	function list_all_category_vacxin(id, id_menu) {
-	
+
 
 		document.getElementById(id_menu).innerHTML = "";
 		var ele = document.getElementById(id_menu);
 
 		if (id == 0) {
-			
-			get_all_phanloai((result)=>{
+
+			get_all_phanloai((result) => {
 				for (var i = 0; i < result.payload.length; i++) {
-						
-						ele.innerHTML = ele.innerHTML +
-						"<ul id=\"category-tabs\">" + 
-						"<li id = \""+result.payload[i].id+"\">" +" <a href=\"javascript:void\" class=\"main-category\">" + result.payload[i].Ten + "</a>" + 
-						
-						"</li>" + 
+
+					ele.innerHTML = ele.innerHTML +
+						"<ul id=\"category-tabs\">" +
+						"<li id = \"" + result.payload[i].id + "\">" + " <a href=\"javascript:void\" class=\"main-category\">" + result.payload[i].Ten + "</a>" +
+
+						"</li>" +
 						"</ul>";
 
 				}
 				document.getElementById(id_menu).innerHTML = ele.innerHTML;
-				
-				for (var k = 1; k <= result.payload.length; k++) {
-					console.log("do dai:", result.payload.length);
-	
+
+				for (var k = 0; k < result.payload.length; k++) {
+					//console.log("do dai:", result.payload.length);
+
 					var ele1 = document.getElementById(result.payload[k].id);
-					console.log("id tag:" ,ele1);
-					console.log(k);
-					list_all_goivacxin(k, (result1)=>{
-					
-					for (var j = 1; j <= result1.payload.length; j++) {
-						ele1.innerHTML = ele1.innerHTML +
-						"<ul class=\"list-group\">" + 
-							"<li class=\"list-group-item\">" + 
-								"<input class=\"form-check-input me-1\" type=\"checkbox\" aria-label=\"...\">" + 
-								"<li>" + result1.payload[j].Ten + "</li>" + 
-								"<li>" + result1.payload[j].GiaTien + "</li>" + 
-							"</li>" + 
-						"</ul>";
-					}
-						document.getElementById(result.payload[i].id).innerHTML = ele1.innerHTML;
+					list_all_goivacxin(k, (result1) => {
+						console.log(k);
+						console.log(result1);
+						for (var j = 0; j < result1.payload.length; j++) {
+							ele1.innerHTML = ele1.innerHTML +
+								"<ul class=\"list-group\">" +
+								"<li class=\"list-group-item\">" +
+								"<input class=\"form-check-input me-1\" type=\"checkbox\" aria-label=\"...\">" +
+								"<li>" + result1.payload[j].Ten + "</li>" +
+								"<li>" + result1.payload[j].GiaTien + "</li>" +
+								"</li>" +
+								"</ul>";
+						}
+						console.log("id: ", result.payload[k].id);
+						document.getElementById(result.payload[k].id).innerHTML = ele1.innerHTML;
+						console.log("id tag:", ele1);
 					});
 				}
-				
+
 			})
 
 
-					
+
 
 			/*get_all_phanloai((result)=>{
 				for (var i = 0; i < result.payload.length; i++) {
@@ -323,25 +327,25 @@
 				document.getElementById(id_menu).innerHTML = ele.innerHTML;
 			})*/
 
-				/*get_all_phanloai((result)=>{
-				for (var i = 0; i < result.payload.length; i++) {
-					list_all_goivacxin((result1)=>{
-					for (var j = 0; j < birds.payload.length; j++) {
-						ele.innerHTML = ele.innerHTML +
-						"<ul id=\"category-tabs\">" + 
-						"<li>" +" <a href=\"javascript:void\" class=\"main-category\">" + payload[i].Ten + "</a>" + 
-						<ul class="list-group">
-							<li class="list-group-item">
-								<input class="form-check-input me-1" type="checkbox" value="" aria-label="...">			
-							</li>
-						</ul>
+			/*get_all_phanloai((result)=>{
+			for (var i = 0; i < result.payload.length; i++) {
+				list_all_goivacxin((result1)=>{
+				for (var j = 0; j < birds.payload.length; j++) {
+					ele.innerHTML = ele.innerHTML +
+					"<ul id=\"category-tabs\">" + 
+					"<li>" +" <a href=\"javascript:void\" class=\"main-category\">" + payload[i].Ten + "</a>" + 
+					<ul class="list-group">
+						<li class="list-group-item">
+							<input class="form-check-input me-1" type="checkbox" value="" aria-label="...">			
 						</li>
-						</ul>
-					}
-					});
+					</ul>
+					</li>
+					</ul>
 				}
-				document.getElementById(id_menu).innerHTML = ele.innerHTML;
-			})*/
+				});
+			}
+			document.getElementById(id_menu).innerHTML = ele.innerHTML;
+		})*/
 		}
 
 	}
@@ -397,7 +401,7 @@
 		console.log(hinhthuc);
 		});*/
 
-		
+
 
 
 

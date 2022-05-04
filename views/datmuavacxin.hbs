@@ -14,10 +14,6 @@
 
 
 
-
-
-
-
 <!--introservice-->
 <!--<header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
@@ -103,27 +99,39 @@
 
 			<div class=" col-lg-3">
 				<div class="card shadow mb-2">
-							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">DANH SÁCH VẮC XIN CHỌN MUA
-								</h6>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-								<ul>
-								
-										<li><h5 class="fw-bolder">Vac xin 1</h5>
-                                    	1.200.000đ<span class="close" >x </span></li>
-                                
-										<li><h5 class="fw-bolder">Vac xin 1</h5>
-                                    	1.200.000đ<span class="close">x</span></li>
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">DANH SÁCH VẮC XIN CHỌN MUA
+						</h6>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<ul id="list_product">
+								{{!-- <li>
+									<h5 class="fw-bolder">Vac xin 1</h5> 1.200.000đ <span class="close"
+										onclick="kick()"> x </span>
+								</li>
 
-										<li><h5 class="fw-bolder">Vac xin 1</h5>
-                                    	1.200.000đ<span class="close">x</span></li>
-                                </ul>	
-								
-								</div>
-							</div>
+								<li>
+									<h5 class="fw-bolder">Vac xin 1</h5>
+									1.200.000đ<span class="close">x</span>
+								</li>
+								--}}
+								{{!-- <li>
+									<h5 class="fw-bolder">Vac xin 1</h5>
+									1.200.000đ<span class="close">x</span>
+								</li> --}}
+							</ul>
+
 						</div>
+					</div>
+
+				</div>
+				<div class="col-12">
+					<form action="/dangkytiem_lienhe" id="luu_cookie_id">
+						<input type="submit" class="btn btn-primary" value="Tiếp tục">
+					</form>
+				</div>
+
 
 			</div>
 
@@ -132,13 +140,6 @@
 </div>
 
 
-<script>
-	$('#category-tabs li a').click(function () {
-		$(this).next('ul').slideToggle('500');
-		$(this).find('i').toggleClass('fa-minus fa-plus ')
-	});
-
-</script>
 
 
 
@@ -222,10 +223,10 @@
 {{!-- hien thi cac san pham da chon mua --}}
 <script>
 	function list_view_product(list_id) {
-		console.log(list_id);
+		console.log("list id view: ", list_id);
 		localStorage.setItem("list_arr_product", list_id);
 
-		list_all_service_by_id(list_id, (result) => {
+		list_all_service_by_id((result) => {
 			document.getElementById("list_product").innerHTML = "";
 			var birds = result;
 			var ele = document.getElementById('list_product');
@@ -233,22 +234,25 @@
 			for (var i = 0; i < birds.payload.length; i++) {
 
 				if (list_id[i] == birds.payload[i].id) {
-					console.log('con cac');
+
 					ele.innerHTML = ele.innerHTML +
-						"<div class=\"col-lg-6\">" +
-						"<div class=\"card mb-4\">" +
+						"<li>" +
+						"<h5 class=\"fw-bolder\">" + birds.payload[i].Ten + "</h5>" + "Giá tiền: " + birds.payload[i].GiaTien + "VNĐ" + "<span class=\"close\" onclick = \"delete_id_service(" + birds.payload[i].id + ")\">" + "x" + "</span>" +
+						"</li>";
+					/*"<div class=\"col-lg-6\">" +
+					"<div class=\"card mb-4\">" +
 
-						"<div class=\"card-body\">" +
+					"<div class=\"card-body\">" +
 
-						"<h2 class=\"card-title h4\">" + birds.payload[i].Ten + "</h2>" + birds.payload[i].GiaTien + '&nbsp' + "VNĐ" + "<br>" +
+					"<h2 class=\"card-title h4\">" + birds.payload[i].Ten + "</h2>" + birds.payload[i].GiaTien + '&nbsp' + "VNĐ" + "<br>" +
 
-						"<button class=\"w-45 btn btn-primary btn-lg\" type=\"submit\">" +
+					"<button class=\"w-45 btn btn-primary btn-lg\" type=\"submit\">" +
 
-						"<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[i].id + ")\" id=\"detai\" >Chọn</a>" +
-						"</button>" +
-						"</div>" +
-						"</div>" +
-						"</div>";
+					"<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[i].id + ")\" id=\"detai\" >Chọn</a>" +
+					"</button>" +
+					"</div>" +
+					"</div>" +
+					"</div>";*/
 				}
 
 			}
@@ -293,14 +297,50 @@
 	}
 	/*unique_arr(list_id_product_1);
 	console.log("sau khi sua lai: " + list_id_product_1 + "");*/
+	function delete_id_service(id) {
+		console.log("id can xoa: ", id);
+		var list_id = localStorage.getItem("cache1");
+		//console.log(list_id);
+		list_id = list_id.split(',');
+		list_id = unique_arr(list_id);
+		console.log("chuyen thanh mang: ", list_id);
+		//console.log(list_id);
+		for (var i = 0; i < list_id.length - 1; i++) {
+			if (list_id[i] == id) {
+				
+				list_id.splice(i, 1);
+			}
+		}
+		console.log("mang moi: ", list_id);
+		list_id = list_id.join();
+		console.log("chuyen thanh chuoi: ", list_id);
+		localStorage.setItem("cache1", list_id);
+		list_view_product(list_id);
+		
+	
+		
+		//	for(var i = 0; i < list_id.length < i++){
+		//	if(list_id[i] == id){
+
+		//	}
+		//}
+		//cache1
+	}
+</script>
+
+<script>
+	$('#category-tabs li a').click(function () {
+		$(this).next('ul').slideToggle('500');
+		$(this).find('i').toggleClass('fa-minus fa-plus ')
+	});
+
+
 </script>
 
 
 
-
-
 <script>
-	var form = document.getElementById('add4');
+	var form = document.getElementById('add1');
 	form.addEventListener('submit', function (event) {
 		event.preventDefault();
 		search_service();
@@ -318,7 +358,7 @@
 		event.preventDefault();
 		var coookie_id = get_nanoid();
 		localStorage.setItem("cookie_cart", coookie_id);
-		window.location.assign("http://localhost:8889/datmuadangky"); 
+		window.location.assign("http://localhost:8889/datmuadangky");
 	});
 </script>
 
@@ -331,12 +371,12 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <script>
-var closebtns = document.getElementsByClassName("close");
-var i;
+	var closebtns = document.getElementsByClassName("close");
+	var i;
 
-for (i = 0; i < closebtns.length; i++) {
-  closebtns[i].addEventListener("click", function() {
-    this.parentElement.style.display = 'none';
-  });
-}
+	for (i = 0; i < closebtns.length; i++) {
+		closebtns[i].addEventListener("click", function () {
+			this.parentElement.style.display = 'none';
+		});
+	}
 </script>

@@ -105,18 +105,67 @@
 			</div>
 			<!-- Blog entries-->
 			<div class=" col-lg-4 py-5">
-				<h3><b>DANH SÁCH NGƯỜI TIÊM</b></h3>
-				<div class="row " id="dsngtiem">
+				<div class="card shadow mb-2">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">DANH SÁCH NGƯỜI TIÊM
+						</h6>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<ul id="list_cus">
 
 
-					<div class="col-12">
-						<form id="add1">
-							<button class="btn btn-primary" type="submit">Thanh toán</button>
-						</form>
+
+							</ul>
+							<ul id="tongtien">
+
+
+
+							</ul>
+
+						</div>
 					</div>
 				</div>
-
+				<div class="col-12">
+					<form id="add1">
+						<button class="btn btn-primary" type="submit">Thanh toán</button>
+					</form>
+				</div>
 			</div>
+
+			{{!-- <div class=" col-lg-4 py-5">
+				<h3><b>DANH SÁCH NGƯỜI TIÊM</b></h3>
+				<div class="table-responsive">
+					<ul id="list_cus">
+
+
+					</ul>
+
+				</div>
+				<div class="col-12">
+					<form id="add1">
+						<button class="btn btn-primary" type="submit">Thanh toán</button>
+					</form>
+				</div>
+			</div> --}}
+
+			{{!-- <div class=" col-lg-4 py-5">
+				<h3><b>DANH SÁCH NGƯỜI TIÊM</b></h3>
+				<div class="row " id="list_cus">
+
+					{{!-- <li>
+						<h5 class="fw-bolder">Vac xin 1</h5>
+						1.200.000đ<span class="close">x</span>
+					</li> --}}
+
+				</div>
+				<div class="col-12">
+					<form id="add1">
+						<button class="btn btn-primary" type="submit">Thanh toán</button>
+					</form>
+				</div>
+
+			</div> --}}
 
 
 
@@ -237,44 +286,83 @@
 		id_dh = localStorage.getItem("id_donhang");
 		//console.log(localStorage.getItem("id_donhang"));
 		//console.log("------------------------------------tao vao roi ne");
+		var html = localStorage.setItem("html_view_info_donhang", "--------");
+		console.log(localStorage.getItem("html_view_info_donhang"));
 
-		ham_getdetailbooking_duatren_madonhang(id_dh, (result) => {
-			console.log("chi tietdon hang", result);
+		ham_getdetailbooking_duatren_madonhang(id_dh, (chitietdonhang) => {
+			console.log("chi tietdon hang", chitietdonhang);
 			var ele = document.getElementById('list_cus');
+			var ele1 = document.getElementById('tongtien');
+
+
 			//xy ly di vao dschitiet 
-			ham_timtengoivacxintheoid((result1) => {
-				for (var i = 0; i < result.payload.DSChiTiet.length; i++) { //vao trong all dschitiet
-					for (var j = 0; j < result.payload.DSChiTiet[i].DSMua.length; i++) { // vao trong dsmua 
-						for (var k = 0; k < result1.payload.length; k++) {//duyet qua mang all goi vac xin
-						console.log(i);
-						console.log(j);
-						console.log(k);
-						console.log("do dai all dschitiet: ", result.payload.DSChiTiet.length);
-						console.log("do dai cua 1 ds mua: ",  result.payload.DSChiTiet[i].DSMua.length);
-						console.log("do dai mang all vacxin: ", result1.payload.length);
-						//doan code nay check xem sao ko hien thi ra dc dsmua :)))))))
-						console.log("dschitiet: ", result.payload.DSChiTiet);
-						console.log("dschitiet: ", result.payload.DSChiTiet[0]);
-						console.log("dschitiet[0]: ", result.payload.DSChiTiet[i].DSmua[0]);
-					
-						//console.log("id trong ds mua: ", result.payload.DSChiTiet[i].PhanLoaiDS);
-						//console.log("id trong get all vacxin: ", result1.payload[k].id);
-						
+			ham_timtengoivacxin((dsgoivacxin) => {
+				console.log("do dai goi: ", dsgoivacxin.payload.length);
+				for (var i = 0; i < chitietdonhang.payload.DSChiTiet.length; i++) { //vao trong all dschitiet
+					var tong_tien = chitietdonhang.payload.DonHang.TongTien;
+					//console.log("cac");
+					//console.log("vao i lan: " i);
+					var string_goivx = "";
+					//console.log(result.payload.DSChiTiet[i].DSMua);
+					for (var j = 0; j < chitietdonhang.payload.DSChiTiet[i].DSMua.length; j++) { // vao trong dsmua 
+						//console.log("vao j lan: ", j);
+						//console.log(result.payload.DSChiTiet[i].DSMua[0]);
+						//console.log("j: ", j);
+						for (var k = 0; k < dsgoivacxin.payload.length; k++) {//duyet qua mang all goi vac xin
+							//console.log("vao k lan: ", k);
+							if (chitietdonhang.payload.DSChiTiet[i].DSMua[j] == dsgoivacxin.payload[k].id) {
+								//		console.log("bang nhau lan:", k);
+								string_goivx = string_goivx + ',' + dsgoivacxin.payload[k].Ten;
+								//console.log(string_goivx);
+							}
+
+						}
+
 					}
-					}
-			
-					//console.log(result.payload.DSChiTiet.length);
-					//console.log("chi tiet goi tiem", result1);
-					//console.log(result.payload.DSChiTiet.length);
-					//console.log(i);
-					//console.log(result.payload.DSChiTiet[i]);
-					//console.log("do dai cua ds mua: ", result.payload.DSChiTiet.length);
-					//console.log("do dai cua all goi vac xin: ", result1.payload.length);
+					//console.log("vao i: ", i);
+					//console.log(chitietdonhang.payload.DSChiTiet[i].MaKH);
+					var tag_dskh = "";
+					ham_timtenkhachhangtheoid(chitietdonhang.payload.DSChiTiet[i].MaKH, (dskh) => {//
+						//console.log("vao i lan: ", i);
+						//tag_dskh += JSON.stringify(dskh);
+
+						//console.log(tag_dskh);
+						//localStorage.setItem("luu_dskh", tag_dskh);
+						//console.log(dskh);
+						//for (var t = 0; t < chitietdonhang.payload.DSChiTiet.length; t++) { //vao trong all dschitiet
+						//	ele.innerHTML = ele.innerHTML +
+						//		"<li>" +
+						//		"<h5 class=\"fw-bolder\">" + dskh.payload[0].Ten + '(' + chitietdonhang.payload.DSChiTiet[t].MoiQuanHe + ')' + "</h5>" +
+						//		"<h5>" + string_goivx + "</h5>" +
+						//		"<h5>" + "Thành tiền: " + chitietdonhang.payload.DSChiTiet[0].ThanhTien + "</h5>" +
+
+						//		"</li>";
+						//}
+						//console.log(chitietdonhang.payload.DSChiTiet[i].MaKH);
 					
+					
+						//console.log("giai mai: ",JSON.parse(x));
+
+						//"<div class=\"col-lg-6\">" + dskh.payload[0].Ten + '(' + chitietdonhang.payload.DSChiTiet[0].MoiQuanHe + ')' + "</div>" + "<p></p>" +
+						//"<div class=\"col-lg-6\">" + string_goivx + "</div>" + "<p></p>" +
+						//"<div class=\"col-lg-6\">" + "Giá tiền: " + chitietdonhang.payload.DonHang.TongTien + "</div>" + "<p></p>";
+					});
+					//var x = localStorage.getItem("luu_dskh");
+					
+					//console.log(JSON.parse(x));
 
 				}
+				document.getElementById("list_cus").innerHTML = ele.innerHTML;
+
+				ele1.innerHTML = ele1.innerHTML +
+					"<h5>" + "Tổng số tiền cần thanh toán: " + chitietdonhang.payload.DonHang.TongTien + "</h5>";
+				document.getElementById("tongtien").innerHTML = ele1.innerHTML;
+				// "Tổng số tiền cần thanh toán: " + chitietdonhang.payload.DonHang.TongTien + "VNĐ";
+
+
 
 			})
+
 
 		});
 	}
@@ -354,6 +442,3 @@
 </script>
 
 <link rel="stylesheet" type="text/css" href="/stylesheets/styles2.css" />
-
-
-

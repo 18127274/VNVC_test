@@ -173,3 +173,50 @@ function list_view_cus2() {
 	}
 </script>
 
+
+
+
+		console.log("vao k lan: " k);
+							if (result.payload.DSChiTiet[i].DSMua[j] == result1.payload[k].id) {
+								//console.log("k", k);
+								//console.log(result.payload.DSChiTiet[i].DSMua[j]);
+								//console.log(result1.payload[k].id);
+								string_goivx = string_goivx + ',' + result1.payload[k].Ten;
+								console.log(string_goivx);
+							}
+							//console.log("id kh trong ds mua: ", result.payload.DSChiTiet[i].MaKH);
+							//console.log("mqh: ", result.payload.DSChiTiet[i].MoiQuanHe);
+							//console.log("i1: ", i);
+							//console.log("i o ngoai: ", i);
+							ham_timtenkhachhangtheoid(result.payload.DSChiTiet[i].MaKH, (result2) => {// so sanh id kh
+							//console.log(result2.payload.length);
+								for (var t = 0; t < result2.payload.length; t++) {
+									//console.log("i o trong: ", i);
+									//console.log(result2);
+									//console.log(result2.payload[t].Ten);
+								}
+								//console.log("i2: ", i);
+
+								//console.log("mqh: ", result.payload.DSChiTiet[i].MoiQuanHe);
+								/*ele.innerHTML = ele.innerHTML +
+									//ho ten(mqh), tengoivacxin, tong tien 
+								"<div class=\"col-lg-6\">" + result2.payload.Ten + '(' + result.payload.DSChiTiet[i].MoiQuanHe + ')' + "</div>" + "<p></p>"
+								"<div class=\"col-lg-6\">" + string_goivx + "</div>" + "<p></p>"
+								"<div class=\"col-lg-6\">" + result.payload.DonHang.TongTien + "</div>" + "<p></p>";*/
+								//console.log(ele);
+								//view data len
+							});
+							//console.log(result.payload.DSChiTiet[i].DSMua[j]);
+							//console.log(i);
+							//console.log(j);
+							///console.log(k);
+							//console.log("do dai all dschitiet: ", result.payload.DSChiTiet.length);
+							//console.log("do dai cua 1 ds mua: ",  result.payload.DSChiTiet[i].DSMua.length);
+							//console.log("do dai mang all vacxin: ", result1.payload.length);
+							//doan code nay check xem sao ko hien thi ra dc dsmua :)))))))
+							//console.log("dschitiet: ", result.payload.DSChiTiet);
+							//log("dschitiet: ", result.payload.DSChiTiet[0]);
+							//console.log("dschitiet[0]: ", result.payload.DSChiTiet[i].DSmua[0]);
+
+							//console.log("id trong ds mua: ", result.payload.DSChiTiet[i].PhanLoaiDS);
+							//console.log("id trong get all vacxin: ", result1.payload[k].id);

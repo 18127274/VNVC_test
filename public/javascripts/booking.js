@@ -191,7 +191,7 @@ function list_all_service(callback) {
 
 
 
-function list_all_service_by_id(id, callback) {
+function list_all_service_by_id(callback) {
   var array = [];
 
   GET('http://localhost:8888/vacxin/get_all_goivacxin').then(res =>
@@ -304,7 +304,7 @@ function get_allcity1(callback) {
   );
 }
 
-function ham_timtengoivacxintheoid(callback) {
+function ham_timtengoivacxin(callback) {
   var array = [];
 
   GET('http://localhost:8888/vacxin/get_all_goivacxin').then(res =>
@@ -324,7 +324,7 @@ function ham_timtengoivacxintheoid(callback) {
 
 function ham_timtenkhachhangtheoid(id, callback) {
   var array = [];
-
+  console.log("id kh:" ,id);
   GET('http://localhost:8888/customer/get_customer/' + id).then(res =>
     res.json().then(data => {
 
