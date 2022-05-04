@@ -186,6 +186,26 @@ function list_all_service(callback) {
   );
 }
 
+function get_all_cus(callback) {
+  var array = [];
+
+  GET('http://localhost:8888/customer/get_all_cus').then(res =>
+    res.json().then(data => {
+
+      var template = $('#service-table').html();
+      var compiled = Handlebars.compile(template);
+
+      var contextualHtml = compiled({ allservices: data });
+      $('#allservices').html(contextualHtml);
+      array = data;
+
+      return callback(array);
+    })
+  );
+}
+
+
+
 
 
 
@@ -475,10 +495,9 @@ function list_view_cus(id_city, callback) {
   );
 }
 
-/* function list_view_cus1(id_city, callback) {
-  console.log(id_city);
+function get_all_category_question(callback) {
   var array = [];
-  GET('http://localhost:8888/booking/get_detail_booking/' + id_city).then(res =>
+  GET('http://localhost:8888/support/get_all_category_question').then(res =>
     res.json().then(data => {
 
       var template = $('#service-table').html();
@@ -491,7 +510,29 @@ function list_view_cus(id_city, callback) {
       return callback(array);
     })
   );
-} */
+}
+
+function get_all_cate_ques(callback) {
+  var array = [];
+  GET('http://localhost:8888/support/get_all_category_question').then(res =>
+    res.json().then(data => {
+
+      var template = $('#service-table').html();
+      var compiled = Handlebars.compile(template);
+
+      var contextualHtml = compiled({ allservices: data });
+      $('#allservices').html(contextualHtml);
+      array = data;
+      console.log(data);
+      return callback(array);
+    })
+  );
+}
+
+
+
+
+
 
 
 
@@ -552,6 +593,28 @@ function add_booking(ptthanhtoan, ttthanhtoan, ngaylapdon, phanloaidh, hoten, em
     })
   );
 }
+
+function add_question(hoten, gioitinh, tuoi, sdt, email1, address, cauhoi, loaicauhoi) {
+  POST('http://localhost:8888/support/add_question', {
+    "customer_info": {
+      "name": hoten,
+      "sex": gioitinh,
+      "age": tuoi,
+      "phone": sdt,
+      "email": email1,
+      "address": address
+    },
+    "question_content": cauhoi,
+    "category_id": loaicauhoi
+
+  }).then(res =>
+    res.json().then(data => {
+      console.log("add thanh cong");
+      console.log(data);
+    })
+  );
+}
+
 
 function update_status_booking(madh, tttt) {
    PUT('http://localhost:8888/booking/update_payment', {

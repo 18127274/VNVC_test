@@ -312,7 +312,7 @@
 							//console.log("vao k lan: ", k);
 							if (chitietdonhang.payload.DSChiTiet[i].DSMua[j] == dsgoivacxin.payload[k].id) {
 								//		console.log("bang nhau lan:", k);
-								string_goivx = string_goivx + ',' + dsgoivacxin.payload[k].Ten;
+								string_goivx = string_goivx + ', ' + dsgoivacxin.payload[k].Ten;
 								//console.log(string_goivx);
 							}
 
@@ -321,37 +321,59 @@
 					}
 					//console.log("vao i: ", i);
 					//console.log(chitietdonhang.payload.DSChiTiet[i].MaKH);
-					var tag_dskh = "";
-					ham_timtenkhachhangtheoid(chitietdonhang.payload.DSChiTiet[i].MaKH, (dskh) => {//
-						//console.log("vao i lan: ", i);
-						//tag_dskh += JSON.stringify(dskh);
 
-						//console.log(tag_dskh);
-						//localStorage.setItem("luu_dskh", tag_dskh);
-						//console.log(dskh);
-						//for (var t = 0; t < chitietdonhang.payload.DSChiTiet.length; t++) { //vao trong all dschitiet
-						//	ele.innerHTML = ele.innerHTML +
-						//		"<li>" +
-						//		"<h5 class=\"fw-bolder\">" + dskh.payload[0].Ten + '(' + chitietdonhang.payload.DSChiTiet[t].MoiQuanHe + ')' + "</h5>" +
-						//		"<h5>" + string_goivx + "</h5>" +
-						//		"<h5>" + "Thành tiền: " + chitietdonhang.payload.DSChiTiet[0].ThanhTien + "</h5>" +
 
-						//		"</li>";
-						//}
-						//console.log(chitietdonhang.payload.DSChiTiet[i].MaKH);
-					
-					
-						//console.log("giai mai: ",JSON.parse(x));
+					//ham_timtenkhachhangtheoid(chitietdonhang.payload.DSChiTiet[i].MaKH, (dskh) => {//
+					//console.log("vao i lan: ", i);
+					//tag_dskh += JSON.stringify(dskh);
 
-						//"<div class=\"col-lg-6\">" + dskh.payload[0].Ten + '(' + chitietdonhang.payload.DSChiTiet[0].MoiQuanHe + ')' + "</div>" + "<p></p>" +
-						//"<div class=\"col-lg-6\">" + string_goivx + "</div>" + "<p></p>" +
-						//"<div class=\"col-lg-6\">" + "Giá tiền: " + chitietdonhang.payload.DonHang.TongTien + "</div>" + "<p></p>";
-					});
+					//console.log(tag_dskh);
+					//localStorage.setItem("luu_dskh", tag_dskh);
+					//console.log(dskh);
+					//for (var t = 0; t < chitietdonhang.payload.DSChiTiet.length; t++) { //vao trong all dschitiet
+					//	ele.innerHTML = ele.innerHTML +
+					//		"<li>" +
+					//		"<h5 class=\"fw-bolder\">" + dskh.payload[0].Ten + '(' + chitietdonhang.payload.DSChiTiet[t].MoiQuanHe + ')' + "</h5>" +
+					//		"<h5>" + string_goivx + "</h5>" +
+					//		"<h5>" + "Thành tiền: " + chitietdonhang.payload.DSChiTiet[0].ThanhTien + "</h5>" +
+
+					//		"</li>";
+					//}
+					//console.log(chitietdonhang.payload.DSChiTiet[i].MaKH);
+
+
+					//console.log("giai mai: ",JSON.parse(x));
+
+					//"<div class=\"col-lg-6\">" + dskh.payload[0].Ten + '(' + chitietdonhang.payload.DSChiTiet[0].MoiQuanHe + ')' + "</div>" + "<p></p>" +
+					//"<div class=\"col-lg-6\">" + string_goivx + "</div>" + "<p></p>" +
+					//"<div class=\"col-lg-6\">" + "Giá tiền: " + chitietdonhang.payload.DonHang.TongTien + "</div>" + "<p></p>";
+					//});
 					//var x = localStorage.getItem("luu_dskh");
-					
+
 					//console.log(JSON.parse(x));
 
 				}
+				string_goivx = string_goivx.replace(',', '');
+				var tag_dskh = "";
+				console.log("i : ", i);
+				get_all_cus((dskh) => {
+					for (var k = 0; k < chitietdonhang.payload.DSChiTiet.length; k++) {
+						console.log(dskh);
+						console.log("vao i lan: ", i);
+						for (var t = 0; t < dskh.payload.length; t++) { //vao trong all dskh
+							if (chitietdonhang.payload.DSChiTiet[k].MaKH == dskh.payload[t].id) {
+								ele.innerHTML = ele.innerHTML +
+									"<li>" +
+									"<h5 class=\"fw-bolder\">" + dskh.payload[t].Ten + '(' + chitietdonhang.payload.DSChiTiet[k].MoiQuanHe + ')' + "</h5>" +
+									"<h5>" + string_goivx + "</h5>" +
+									"<h5>" + "Thành tiền: " + chitietdonhang.payload.DSChiTiet[k].ThanhTien + "</h5>" +
+									"</li>";
+							}
+						}
+					}
+
+
+				});
 				document.getElementById("list_cus").innerHTML = ele.innerHTML;
 
 				ele1.innerHTML = ele1.innerHTML +
