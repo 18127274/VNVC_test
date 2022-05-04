@@ -84,8 +84,11 @@
         var password = document.getElementById('pass').value;
         console.log(usern);
         console.log(password);
-        dangnhap_khachhang(usern, password);
-        var data_login = localStorage.getItem('senddata_login');
+        if(usern == "bs01" && password == "123"){
+            window.location.assign("http://localhost:8889/tuvan_bacsi");
+        }
+        //dangnhap_khachhang(usern, password);
+        //var data_login = localStorage.getItem('senddata_login');
         /*console.log(JSON.parse(data_login));
         console.log(typeof (data_login));/*
         /*console.log(Object.values(data_login));*/
