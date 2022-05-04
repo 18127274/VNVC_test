@@ -102,19 +102,28 @@
 			</div>
 
 			<div class=" col-lg-3">
-				<h3>DANH SÁCH VẮC XIN CHỌN MUA</h3>
-				<br>
-				<br>
-				<div class="row" id="list_product">
+				<div class="card shadow mb-2">
+							<div class="card-header py-3">
+								<h6 class="m-0 font-weight-bold text-primary">DANH SÁCH VẮC XIN CHỌN MUA
+								</h6>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+								<ul>
+								
+										<li><h5 class="fw-bolder">Vac xin 1</h5>
+                                    	1.200.000đ<span class="close" >x </span></li>
+                                
+										<li><h5 class="fw-bolder">Vac xin 1</h5>
+                                    	1.200.000đ<span class="close">x</span></li>
 
-				</div>
-
-				<div class="col-12">
-					<form id="luu_cookie_id">
-						{{!-- <button class="btn btn-primary" type="submit">Đăng ký mũi tiêm</button> --}}
-						<input type="submit" class="btn btn-primary" value="Đăng ký mũi tiêm">
-					</form>
-				</div>
+										<li><h5 class="fw-bolder">Vac xin 1</h5>
+                                    	1.200.000đ<span class="close">x</span></li>
+                                </ul>	
+								
+								</div>
+							</div>
+						</div>
 
 			</div>
 
@@ -320,3 +329,14 @@
 
 <link rel="stylesheet" type="text/css" href="/stylesheets/styles2.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<script>
+var closebtns = document.getElementsByClassName("close");
+var i;
+
+for (i = 0; i < closebtns.length; i++) {
+  closebtns[i].addEventListener("click", function() {
+    this.parentElement.style.display = 'none';
+  });
+}
+</script>

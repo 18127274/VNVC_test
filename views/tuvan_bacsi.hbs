@@ -21,7 +21,7 @@
 
 		<div class="row">
 			<!-- Side widgets-->
-			<div class=" col-lg-8">
+			
 				<!-- Nested row for non-featured blog posts-->
 				<div class="row" id="allservicess">
 
@@ -54,18 +54,17 @@
 										Tiêm ở đâu và giá bao nhiêu ạ? Mong bác sĩ giải đáp.
 								</b></h5>
 								<h6>Nguyễn Lê, TP.HCM</h6>
-								<h6 style="text-align: right;">1 Trả lời</h6>
+								<a href="#demo" class="btn btn-primary" data-toggle="collapse">Trả lời</a>
+  								<div id="demo" class="collapse">
+									<br>
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+									<form action="#">
+										<button class="btn btn-primary" type="submit">Gửi câu trả lời</button>
+									</form>
+  								</div>
 								</li>
 
-								<li><h5 style="text-align: center;">
-									<b >Bác sĩ Vũ Thiện Cơ, Bác sĩ Quản lý vùng khu vực TP.HCM, Hệ thống Trung tâm tiêm chủng VNVC
-								</b></h5>
-								<h6 style="text-align: center;">Chào Anh/Chị, Theo Quyết định số 3802/QĐ-BYT ban hành ngày 
-									10/8/2021, phụ nữ mang thai từ 13 tuần trở lên và phụ nữ đang cho con 
-									bú được tiêm vaccine phòng Covid-19 để hạn chế nguy cơ lây nhiễm và biến 
-									chứng nghiêm trọng khi mắc bệnh.</h6>
-
-								</li>
+								
 							</ul>	
 							</div>
 							
@@ -89,98 +88,13 @@
 
             </div>          
         </div>
-			</div>
+		
 
 
 
-			<!-- Blog entries-->
+			
 
-
-
-			<div class=" col-lg-4">
-				<!-- Nested row for non-featured blog posts-->
-				<div class="row" id="allservicess">
-
-
-
-				</div>
-				<!-- next page-->
-				  <div id="layoutSidenav_content">
-            <div class="container-fluid px-4">
-                
-                <!-- delete row -->              
-                <script type='text/x-handlebars-template' id='service-table'> </script>
-                <script type='text/x-handlebars-template' id='data_table_service'> </script>
             
-
-                
-              
-                <!-- Table -->
-                <div class="card shadow mb-2">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">ĐẶT CÂU HỎI</h6>
-                    </div>
-                    <div class="card-body">
-
-					 <form class="row g-2">					
-						<div class="col-md-12">
-							<label for="validationDefault01" class="form-label"><b>Họ tên *</b></label>
-							<input type="text" class="form-control" id="validationDefault01" required>
-						</div>						
-						<div class="col-md-6">
-							<label for="validationDefault04" class="form-label"><b>Giới tính *</b></label>
-							<select class="form-select" id="validationDefault04" required>
-								<option selected disabled value="">Choose...</option>
-								<option value="">Nữ</option>
-								<option value="">Nam</option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<label for="validationDefault01" class="form-label"><b>Tuổi *</b></label>
-							<input type="text" class="form-control" id="validationDefault01" required>
-						</div>
-						<div class="col-md-12">
-							<label for="validationDefault08" class="form-label"><b>Email *</b></label>
-							<input type="text" class="form-control" id="validationDefault03" required>
-						</div>
-						<div class="col-md-12">
-							<label for="validationDefault08" class="form-label"><b>Số điện thoại *</b></label>
-							<input type="text" class="form-control" id="validationDefault03" required>
-						</div>
-						<div class="col-md-12">
-							<label for="validationDefault08" class="form-label"><b>Địa chỉ *</b></label>
-							<input type="text" class="form-control" id="validationDefault03" required>
-						</div>
-
-						<div class="col-md-12">
-							<label for="validationDefault010" class="form-label"><b>Chúng tôi có thể giúp gì cho bạn
-									*</b></label>
-							<select class="form-select" id="hub" required>
-								
-								<option value="">...</option>
-
-							</select>
-						</div>
-						<div class="col-md-12">
-							<label for="exampleFormControlTextarea1" class="form-label"><b>Câu hỏi của bạn *</b></label>
-  							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-							
-						</div>
-						<p>Bạn muốn nhận câu trả lời qua hình thức:<br>
-- Email: Ghi rõ địa chỉ email<br>
-- Facebook mess: Nhấn like page, vào phần GỬI TIN NHẮN và để lại tin nhắn theo cú pháp: TV_Số điện thoại.
-Vui lòng sử dụng đúng số điện thoại nêu trên.</p>
-					</form>  
-					<div class="col-12">
-						<form action="/dangkytiem_lienhe">
-							<button class="btn btn-primary" type="submit">Gửi câu hỏi</button>
-						</form>
-					</div> 
-                    </div>
-                </div>
-
-            </div>          
-        </div>
 			</div>
 
 
@@ -400,3 +314,4 @@ Vui lòng sử dụng đúng số điện thoại nêu trên.</p>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
