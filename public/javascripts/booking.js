@@ -546,6 +546,25 @@ function get_all_ques(callback) {
   );
 }
 
+function get_all_ques_by_category(id, callback) {
+  var array = [];
+  GET('http://localhost:8888/support/get_all_question_by_cate?category_id=' + id).then(res =>
+    res.json().then(data => {
+
+      var template = $('#service-table').html();
+      var compiled = Handlebars.compile(template);
+
+      var contextualHtml = compiled({ allservices: data });
+      $('#allservices').html(contextualHtml);
+      array = data;
+      console.log(data);
+      return callback(array);
+    })
+  );
+}
+
+
+
 
 
 

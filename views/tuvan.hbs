@@ -37,72 +37,76 @@
 						<script type='text/x-handlebars-template' id='data_table_service'> </script>
 
 						<div class=" col-lg-12">
-						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" href="#home">Câu hỏi tư vấn</a></li>
-							{{!-- <li><a data-toggle="tab" href="#menu1">Vắc xin cho trẻ em</a></li>
-							<li><a data-toggle="tab" href="#menu2">Vắc xin cho người lớn</a></li> --}}
-						</ul>
-						<div class="col-md-6">
-							<label for="validationDefault04" class="form-label"><b>Chọn loại câu hỏi theo chủ
-									đề</b></label>
-							<select class="form-select" id="category_ques" required>
-								<option selected disabled value="">Choose...</option>
+							<ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#home">Câu hỏi tư vấn</a></li>
+								{{!-- <li><a data-toggle="tab" href="#menu1">Vắc xin cho trẻ em</a></li>
+								<li><a data-toggle="tab" href="#menu2">Vắc xin cho người lớn</a></li> --}}
+							</ul>
+							<div class="col-md-6">
+								<label for="validationDefault04" class="form-label"><b>Chọn loại câu hỏi theo chủ
+										đề</b></label>
+								<select class="form-select" id="category_ques" required onchange="validateSelectBox(this)">
+									<option selected disabled value="">Choose...</option>
 
-							</select>
-						</div>
+								</select>
+							</div>
 						</div>
 						<div class=" col-lg-12">
-						<div class="tab-content">
-
-							<div id="home" class="tab-pane fade in active">
+							<div class="tab-content">
 								<h3>Câu hỏi tư vấn</h3>
+								<div id="home" class="tab-pane fade in active">
 
-								<div class="card shadow mb-2">
-									<div class="card-header py-3">
-										<ul>
-											<li>
-												<h5 style="color:rgb(10, 10, 126);">
-													<b>Thưa bác sĩ, vắc xin phòng ung thư cổ tử cung có bao nhiêu loại?
-														Tiêm ở đâu và giá bao nhiêu ạ? Mong bác sĩ giải đáp.
-													</b>
-												</h5>
-												<h6>Nguyễn Lê, TP.HCM</h6>
-												<h6 style="text-align: right;">1 Trả lời</h6>
-											</li>
 
-											<li>
-												<h5 style="text-align: center;">
-													<b>Bác sĩ Vũ Thiện Cơ, Bác sĩ Quản lý vùng khu vực TP.HCM, Hệ thống
-														Trung tâm tiêm chủng VNVC
-													</b>
-												</h5>
-												<h6 style="text-align: center;">Chào Anh/Chị, Theo Quyết định số
-													3802/QĐ-BYT ban hành ngày
-													10/8/2021, phụ nữ mang thai từ 13 tuần trở lên và phụ nữ đang cho
-													con
-													bú được tiêm vaccine phòng Covid-19 để hạn chế nguy cơ lây nhiễm và
-													biến
-													chứng nghiêm trọng khi mắc bệnh.</h6>
+									{{!-- <div class="card shadow mb-2">
+										<div class="card-header py-3">
+											<ul>
+												<li>
+													<h5 style="color:rgb(10, 10, 126);">
+														<b>Thưa bác sĩ, vắc xin phòng ung thư cổ tử cung có bao nhiêu
+															loại?
+															Tiêm ở đâu và giá bao nhiêu ạ? Mong bác sĩ giải đáp.
+														</b>
+													</h5>
+													<h6>Nguyễn Lê, TP.HCM</h6>
+													<h6 style="text-align: right;">1 Trả lời</h6>
+												</li>
 
-											</li>
-										</ul>
+												<li>
+													<h5 style="text-align: center;">
+														<b>Bác sĩ Vũ Thiện Cơ, Bác sĩ Quản lý vùng khu vực TP.HCM, Hệ
+															thống
+															Trung tâm tiêm chủng VNVC
+														</b>
+													</h5>
+													<h6 style="text-align: center;">Chào Anh/Chị, Theo Quyết định số
+														3802/QĐ-BYT ban hành ngày
+														10/8/2021, phụ nữ mang thai từ 13 tuần trở lên và phụ nữ đang
+														cho
+														con
+														bú được tiêm vaccine phòng Covid-19 để hạn chế nguy cơ lây nhiễm
+														và
+														biến
+														chứng nghiêm trọng khi mắc bệnh.</h6>
+
+												</li>
+											</ul>
+										</div>
+
 									</div>
+									--}}
 
 								</div>
-
+								{{!-- <div id="menu1" class="tab-pane fade">
+									<h3>Vắc xin cho trẻ em</h3>
+									<p>..............</p>
+								</div>
+								<div id="menu2" class="tab-pane fade">
+									<h3>Vắc xin cho người lớn</h3>
+									<p>............................</p>
+								</div> --}}
 
 							</div>
-							{{!-- <div id="menu1" class="tab-pane fade">
-								<h3>Vắc xin cho trẻ em</h3>
-								<p>..............</p>
-							</div>
-							<div id="menu2" class="tab-pane fade">
-								<h3>Vắc xin cho người lớn</h3>
-								<p>............................</p>
-							</div> --}}
-
 						</div>
-</div>
 
 
 
@@ -136,7 +140,7 @@
 
 						<!-- Table -->
 						<div class="card shadow mb-2">
-						
+
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">ĐẶT CÂU HỎI</h6>
 							</div>
@@ -198,7 +202,7 @@
 								</form>
 								<div class="col-12">
 									<form action="/dangkytiem_lienhe" id="post_cauhoi">
-										<input type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#guicauhoi" value="Gửi câu hỏi" >
+										<input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#guicauhoi" value="Gửi câu hỏi">
 									</form>
 								</div>
 							</div>
@@ -206,24 +210,24 @@
 
 
 						<div id="guicauhoi" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+							<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        
-        <h4 class="modal-title">Thông báo</h4>
-      </div>
-      <div class="modal-body">
-        <p>Gửi câu hỏi thành công</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title">Thông báo</h4>
+									</div>
+									<div class="modal-body">
+										<p>Gửi câu hỏi thành công</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
 
-  </div>
-</div>
+							</div>
+						</div>
 
 					</div>
 				</div>
@@ -269,15 +273,71 @@
 	}
 
 	var myCookies = getCookies();
-	console.log(myCookies.secret); // "do not tell you"
-	console.log(document.cookie);
+	//console.log(myCookies.secret); // "do not tell you"
+	//console.log(document.cookie);
 
 </script>
 
 
-{{!-- function hien thi danh sach san pham theo loai san pham --}}
+{{!-- hien thi cac cau hoi va tra loi theo danh muc --}}
 
 
+<script>
+	function validateSelectBox(obj) {
+
+		var options = obj.children;
+
+		// Biến lưu trữ các chuyên mục đa chọn
+		var html = '';
+		// lặp qua từng option và kiểm tra thuộc tính selected
+		for (var i = 0; i < options.length; i++) {
+			if (options[i].selected) {
+				html += options[i].value;
+			}
+		}
+
+		// hien thi quan huyen tuong ung voi thanh pho
+		document.getElementById('home').innerHTML = "";
+		console.log(html);
+		get_all_ques_by_category(html, (result) => {
+			console.log("danh muc cau hoi", result);
+			var ele = document.getElementById('home');
+			for (var i = 0; i <= result.payload.length; i++) {
+				// POPULATE SELECT ELEMENT WITH JSON.
+				ele.innerHTML = ele.innerHTML +
+					"<div class=\"card shadow mb-2\">" +
+					"<div class=\"card-header py-3\">" +
+					"<ul>" +
+					"<li>" +
+					"<h5 style=\"color:rgb(10, 10, 126);\">" +
+					"<b>" + result.payload[i].question_content +
+					"</b>" +
+					"</h5>" +
+					"<h6>" + result.payload[i].customer_info.name + ',' + result.payload[i].customer_info.address + "</h6>" +
+					"<h6 style=\"text-align: right;\">1 Trả lời</h6>" + //dsds
+					"</li>" +
+
+					"<li>" +
+					"<h5 style=\"text-align: center;\">" +
+					"<b>" + result.payload[i].hotline_id +
+					"</b>" +
+					"</h5>" +
+					"<h6 style=\"text-align: center;\">" +
+					result.payload[i].answer_content +
+					"</h6>" +
+					"</li>" +
+					"</ul>" +
+					"</div>" +
+					"</div>";
+			}
+			document.getElementById("home").innerHTML = ele.innerHTML;
+		});
+
+	}
+
+
+
+</script>
 
 
 
@@ -333,4 +393,3 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-

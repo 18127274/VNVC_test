@@ -259,27 +259,24 @@
 {{!-- hien thi theo lua chon vac xin goi hoac vac xin le --}}
 <script>
 	function list_all_category_vacxin(id, id_menu) {
-
-
 		document.getElementById(id_menu).innerHTML = "";
 		var ele = document.getElementById(id_menu);
 
 		if (id == 0) {
-
 			get_all_phanloai((result) => {
+				
+				localStorage.setItem("luu_mang_goitiem", JSON.stringify(result));
 				for (var i = 0; i < result.payload.length; i++) {
-
 					ele.innerHTML = ele.innerHTML +
 						"<ul id=\"category-tabs\">" +
 						"<li id = \"" + result.payload[i].id + "\">" + " <a href=\"javascript:void\" class=\"main-category\">" + result.payload[i].Ten + "</a>" +
-
 						"</li>" +
 						"</ul>";
 
 				}
 				document.getElementById(id_menu).innerHTML = ele.innerHTML;
 
-				for (var k = 0; k < result.payload.length; k++) {
+				/*for (var k = 0; k < result.payload.length; k++) {
 					//console.log("do dai:", result.payload.length);
 
 					var ele1 = document.getElementById(result.payload[k].id);
@@ -300,9 +297,36 @@
 						document.getElementById(result.payload[k].id).innerHTML = ele1.innerHTML;
 						console.log("id tag:", ele1);
 					});
-				}
+				}*/
 
-			})
+			});
+			var arr_cate = localStorage.getItem("luu_mang_goitiem");
+			arr_cate = JSON.parse(arr_cate);
+			console.log("do dai mang goi tiem: ", arr_cate);
+
+			for (var k = 0; k < arr_cate.payload.length; k++) {
+				var ele1 = document.getElementById(arr_cate.payload[k].id);
+				console.log(arr_cate.payload[k].id);
+				console.log(ele1);
+				/*list_all_goivacxin(arr_cate.payload[k].id, (result1) => {
+					console.log(arr_cate.payload[k].id);
+					console.log(result1);
+					for (var j = 0; j < result1.payload.length; j++) {
+						ele1.innerHTML = ele1.innerHTML +
+							"<ul class=\"list-group\">" +
+							"<li class=\"list-group-item\">" +
+							"<input class=\"form-check-input me-1\" type=\"checkbox\" aria-label=\"...\">" +
+							"<li>" + result1.payload[j].Ten + "</li>" +
+							"<li>" + result1.payload[j].GiaTien + "</li>" +
+							"</li>" +
+							"</ul>";
+					}
+					//console.log("id: ", result.payload[k].id);
+					document.getElementById(arr_cate.payload[k].id).innerHTML = ele1.innerHTML;
+					//console.log("id tag:", ele1);
+				});*/
+			}
+
 
 
 
