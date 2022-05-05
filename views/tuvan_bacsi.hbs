@@ -21,90 +21,74 @@
 
 		<div class="row">
 			<!-- Side widgets-->
-			
-				<!-- Nested row for non-featured blog posts-->
-				<div class="row" id="allservicess">
+
+			<!-- Nested row for non-featured blog posts-->
+			<div class="row" id="allservicess">
 
 
 
-				</div>
-				<!-- next page-->
-				  <div id="layoutSidenav_content">
-            <div class="container-fluid px-4">
-                
-                <!-- delete row -->              
-                <script type='text/x-handlebars-template' id='service-table'> </script>
-                <script type='text/x-handlebars-template' id='data_table_service'> </script>
-            
-
-                <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Câu hỏi tư vấn</a></li>
-    <li><a data-toggle="tab" href="#menu1">Vắc xin cho trẻ em</a></li>
-    <li><a data-toggle="tab" href="#menu2">Vắc xin cho người lớn</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>Câu hỏi tư vấn</h3>
-				<div class="card shadow mb-2">
-							<div class="card-header py-3">
-							<ul>
-								<li><h5 style="color:rgb(10, 10, 126);">
-									<b>Thưa bác sĩ, vắc xin phòng ung thư cổ tử cung có bao nhiêu loại? 
-										Tiêm ở đâu và giá bao nhiêu ạ? Mong bác sĩ giải đáp.
-								</b></h5>
-								<h6>Nguyễn Lê, TP.HCM</h6>
-								<a href="#demo" class="btn btn-primary" data-toggle="collapse">Trả lời</a>
-  								<div id="demo" class="collapse">
-									<br>
-									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-									<form action="#">
-										<button class="btn btn-primary" type="submit">Gửi câu trả lời</button>
-									</form>
-  								</div>
-								</li>
-
-								
-							</ul>	
-							</div>
-							
-						</div>
-
-			
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Vắc xin cho trẻ em</h3>
-      <p>..............</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>Vắc xin cho người lớn</h3>
-      <p>............................</p>
-    </div>
-    
-  </div>
-              
-                
-                
-
-            </div>          
-        </div>
-		
-
-
-
-			
-
-            
 			</div>
+			<!-- next page-->
+			<div id="layoutSidenav_content">
+				<div class="container-fluid px-4">
+
+					<!-- delete row -->
+					<script type='text/x-handlebars-template' id='service-table'> </script>
+					<script type='text/x-handlebars-template' id='data_table_service'> </script>
 
 
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#home">Câu hỏi tư vấn</a></li>
+						<li><a data-toggle="tab" href="#menu1">Vắc xin cho trẻ em</a></li>
+						<li><a data-toggle="tab" href="#menu2">Vắc xin cho người lớn</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div id="home" class="tab-pane fade in active">
+							<h3>Câu hỏi tư vấn</h3>
+							{{!-- <div class="card shadow mb-2">
+								<div class="card-header py-3">
+									<ul>
+										<li>
+											<h5 style="color:rgb(10, 10, 126);">
+												<b>Thưa bác sĩ, vắc xin phòng ung thư cổ tử cung có bao nhiêu loại? Tiêm
+													ở đâu và giá bao nhiêu ạ? Mong bác sĩ giải đáp.
+												</b>
+											</h5>
+											<h6>Nguyễn Lê, TP.HCM</h6>
+											<a href="#demo" class="btn btn-primary" data-toggle="collapse">Trả lời</a>
+											<div id="demo" class="collapse">
+												<br>
+												<textarea class="form-control" id="ans" rows="3"></textarea>
+												<form id="post_ans">
+													<input type="submit" class="btn btn-primary"
+														value="Gửi câu trả lời">
+												</form>
+											</div>
+										</li>
 
 
+									</ul>
+								</div>
+
+							</div> --}}
 
 
-
+						</div>
+						<div id="menu1" class="tab-pane fade">
+							<h3>Vắc xin cho trẻ em</h3>
+							<p>..............</p>
+						</div>
+						<div id="menu2" class="tab-pane fade">
+							<h3>Vắc xin cho người lớn</h3>
+							<p>............................</p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+</div>
 </div>
 
 
@@ -114,20 +98,6 @@
 		$(this).find('i').toggleClass('fa-minus fa-plus ')
 	});
 
-
-
-	/*ham xu ly anh*/
-	function Xulyanh(link) {
-		link = link.split('d/');
-		console.log(link);
-		link = link[1];
-		console.log(link);
-		link = link.split('/');
-		console.log(link);
-		link = link[0];
-		console.log(link);
-		return link;
-	}
 </script>
 
 
@@ -139,172 +109,55 @@
 
 
 <div id="all-r"></div>
-{{!-- them vao gio hang localStorage.setItem("senddata", JSON.stringify(b)); --}}
-<script>
-	var list_service = '';
 
-	function send_idservice(id) {
-		localStorage.setItem("send_data", id);
-		window.location.assign("http://localhost:8888/detail");
-
-	}
-
-	var getCookies = function () {
-		var pairs = document.cookie.split(";");
-		var cookies = {};
-		for (var i = 0; i < pairs.length; i++) {
-			var pair = pairs[i].split("=");
-			cookies[(pair[0] + '').trim()] = unescape(pair.slice(1).join('='));
-		}
-		return cookies;
-	}
-
-	var myCookies = getCookies();
-	console.log(myCookies.secret); // "do not tell you"
-	console.log(document.cookie);
-
-</script>
 
 
 {{!-- function hien thi danh sach san pham theo loai san pham --}}
 
+
+
+{{!-- view nhung cau hoi thuoc danh muc nao de bac si tra loi --}}
+{{!-- view get all question api --}}
 <script>
-	function list_service_bycategory(id) {
-
-		document.getElementById("allservicess").innerHTML = "";
-		console.log(id);
-		for (let i = 1; i < 20; i++) {
-			arr_img = arr_img + ',' + 's' + i + '.png';
-		}
-		arr_img = arr_img.split(',');
-		arr_img.shift();
-
-		getlistservice_byidcategory(id, (result) => {
-			var birds = result;
-			var ele = document.getElementById('allservicess');
-			console.log(birds.length);
-			for (var i = 0; i < birds.length; i++) {
-
-				var list_arr_service = "";
-				console.log("anh ne: " + birds[i].image);
-				ele.innerHTML = ele.innerHTML +
-					"<div class=\"col-lg-6\">" +
-					"<div class=\"card mb-4\">" +
-					"<a href=\"#!\">" +
-					"<img class=\"card-img-top\" src=\"https://drive.google.com/uc?export=view&id=" + Xulyanh("" + birds[i].image + "") + "\">" +
-					"</a>" +
-					"<div class=\"card-body\">" +
-
-					"<h2 class=\"card-title h4\">" + birds[i].tenSP + "</h2>" + birds[i].giaTien + '&nbsp' + "VNĐ" + "<br>" + "Số lượng còn lại: " + birds[i].sl +
-					"<br>" +
-
-					"<a class=\"w-55 btn btn-primary\" onclick=\"send_idservice(" + birds[i].id + ")\" id=\"detai\"> Chi tiết sản phẩm</a>" +
-
-					"</div>" +
-					"</div>" +
-					"</div>";
-			}
-			document.getElementById("allservicess").innerHTML = ele.innerHTML;
-			console.log(ele);
-		});
-
-
-
-	}
-
-</script>
-
-<script>
-	var arr_img;
-	for (let i = 1; i < 20; i++) {
-		arr_img = arr_img + ',' + 's' + i + '.png';
-	}
-	arr_img = arr_img.split(',');
-	arr_img.shift();
-
-	get_allService((result) => {
-		var birds = result;
-		var ele = document.getElementById('allservicess');
-		console.log(birds.length);
-		for (var i = 0; i <= birds.length; i++) {
-
-			var list_arr_service = "";
-
-			for (let j = 0; j < result.length; j++) {
-
-				list_arr_service = list_arr_service + ',' + result[j].tenSP;
-			}
-			list_arr_service = list_arr_service.substr(1);
-
-			console.log(list_arr_service);
+	// coi lai ham nay chua view len dc tat ca cau hoi
+	get_all_ques((result) => {
+		var ele = document.getElementById('home');
+		for (var i = 0; i <= result.payload.length; i++) {
 			// POPULATE SELECT ELEMENT WITH JSON.
 			ele.innerHTML = ele.innerHTML +
-				"<div class=\"col-lg-6\">" +
-				"<div class=\"card mb-4\">" +
-				"<a href=\"https://drive.google.com/file/d/1d3XqbQdX_--6zWB0lmmNEnX64453yciP/view\">" +
-				"<img class=\"card-img-top\"  src=\"https://drive.google.com/uc?export=view&id=" + Xulyanh("" + birds[i].image + "") + "\">" +
-				"</a>" +
-				"<div class=\"card-body\">" +
-
-				"<h2 class=\"card-title h4\">" + birds[i].tenSP + "</h2>" + birds[i].giaTien + "VNĐ" + "<br>" + "Số lượng còn lại: " + birds[i].sl + " " +
-				"<br>" +
-
-
-				"<br>" +
-				"<a class=\"w-55 btn btn-primary\" onclick=\"send_idservice(" + birds[i].id + ")\" id=\"detai\"> Chi tiết sản phẩm</a>" +
-
-				"</div>" +
-				"</div>" +
-				"</div>";
-
-
-		}
-		document.getElementById("allservicess").innerHTML = ele;
-	});
-</script>
-
-<script>
-	function search_service(name) {
-		document.getElementById("allservicess").innerHTML = "";
-		var temp_service = document.getElementById('search_service').value;
-		console.log(temp_service);
-		getServices_byname(temp_service, (result) => {
-			var birds = result;
-			var ele = document.getElementById('allservicess');
-			for (var i = 0; i <= birds.length; i++) {
-				// POPULATE SELECT ELEMENT WITH JSON.
-				ele.innerHTML = ele.innerHTML + "<div class=\"col-lg-6\">" +
-					"<div class=\"card mb-4\">" +
-					"<a href=\"#!\">" +
-					"<img class=\"card-img-top\" src=\"https://drive.google.com/uc?export=view&id=" + Xulyanh("" + birds[i].image + "") + "\">" +
-					"</a>" +
-					"<div class=\"card-body\">" +
-
-					"<h2 class=\"card-title h4\">" + birds[i].tenSP + "</h2>" + birds[i].giaTien + "VNĐ" + "<br>" + "Số lượng còn lại: " + birds[i].sl + " " +
+				"<div class=\"card-header py-3\">" +
+				"<ul>" +
+				"<li>" +
+				"<h5 style=\"color:rgb(10, 10, 126);\">" +
+				"<b>" + result.payload[i].question_content +
+				"</b>" +
+				"</h5>" +
+				"<h6>" + result.payload[i].customer_info.name + ',' + result.payload[i].customer_info.address + "</h6>" +
+				"<a href=\"#demo\" class=\"btn btn-primary\" data-toggle=\"collapse\">" + Trả lời + "</a>" +
+					"<div id=\"demo\" class=\"collapse\">" +
 					"<br>" +
-
-
-					"<br>" +
-					"<a class=\"w-55 btn btn-primary\" onclick=\"send_idservice(" + birds[i].id + ")\" id=\"detai\"> Chi tiết sản phẩm</a>" +
-
+					"<textarea class=\"form-control\" id=\"ans\" rows=\"3\">" + "</textarea>" +
+					"<form id=\"post_ans\">" +
+					"<input type=\"submit\" class=\"btn btn-primary\" value=\"Gửi câu trả lời\">" +
+					"</form>" +
 					"</div>" +
-					"</div>" +
+					"</li>" +
+					"</ul>" +
 					"</div>";
-			}
-			document.getElementById("allservicess").innerHTML = ele;
-		});
-	}
-</script>
+		}
+	});
 
 
 
-<script>
-	var form = document.getElementById('add4');
+	var form = document.getElementById('post_ans');
 	form.addEventListener('submit', function (event) {
 		event.preventDefault();
-		search_service();
+		var ans_content = document.getElementById('ans').value;
+		var id_ques = localStorage.getItem("question_id");
+		console.log(ans_content);
+		console.log(id_ques);
+		//post_answer(id_ques, ans_content, id_hot);
 	});
-
 </script>
 
 
@@ -314,4 +167,3 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-

@@ -258,7 +258,7 @@ function get_all_phanloai(callback) {
       var contextualHtml = compiled({ allservices: data });
       $('#allservices').html(contextualHtml);
       array = data;
-     
+
       return callback(array);
     })
   );
@@ -344,7 +344,7 @@ function ham_timtengoivacxin(callback) {
 
 function ham_timtenkhachhangtheoid(id, callback) {
   var array = [];
-  console.log("id kh:" ,id);
+  console.log("id kh:", id);
   GET('http://localhost:8888/customer/get_customer/' + id).then(res =>
     res.json().then(data => {
 
@@ -529,6 +529,25 @@ function get_all_cate_ques(callback) {
   );
 }
 
+function get_all_ques(callback) {
+  var array = [];
+  GET('http://localhost:8888/support/get_all_question').then(res =>
+    res.json().then(data => {
+
+      var template = $('#service-table').html();
+      var compiled = Handlebars.compile(template);
+
+      var contextualHtml = compiled({ allservices: data });
+      $('#allservices').html(contextualHtml);
+      array = data;
+      console.log(data);
+      return callback(array);
+    })
+  );
+}
+
+
+
 
 
 
@@ -564,7 +583,7 @@ function add_product_into_cart(coookie_id, hoten, gioitinh, sdt, email, diachi, 
     })
   );
 }
-         /* add_booking(ptthanhtoan, ttthanhtoan, ngaylapdon, phanloaidh, hoten, email, sdt, cmnd, diachi, tinhthanh, quanhuyen, phuongxa, cookie_id); */
+/* add_booking(ptthanhtoan, ttthanhtoan, ngaylapdon, phanloaidh, hoten, email, sdt, cmnd, diachi, tinhthanh, quanhuyen, phuongxa, cookie_id); */
 function add_booking(ptthanhtoan, ttthanhtoan, ngaylapdon, phanloaidh, hoten, email, sdt, cmnd, diachi, tinhthanh, quanhuyen, phuongxa, cookie_id) {
   POST('http://localhost:8888/booking/add_booking', {
     "PhuongThuc": ptthanhtoan,
@@ -611,16 +630,33 @@ function add_question(hoten, gioitinh, tuoi, sdt, email1, address, cauhoi, loaic
     res.json().then(data => {
       console.log("add thanh cong");
       console.log(data);
+      localStorage.setItem("id_question", data.payload.question_id);
+   
+    })
+  );
+}
+
+function post_answer(id_ques, ans_content, id_hot) {
+  POST('http://localhost:8888/support/add_answer', {
+    "question_id": id_ques,
+    "answer_content": ans_content,
+    "hotline_id": id_hot
+  }).then(res =>
+    res.json().then(data => {
+      console.log("add thanh cong");
+      console.log(data);
     })
   );
 }
 
 
+
+
 function update_status_booking(madh, tttt) {
-   PUT('http://localhost:8888/booking/update_payment', {
-     "MaDH": madh,
-     "TinhTrangThanhToan": tttt
-   }).then(res =>
+  PUT('http://localhost:8888/booking/update_payment', {
+    "MaDH": madh,
+    "TinhTrangThanhToan": tttt
+  }).then(res =>
     res.json().then(data => {
       console.log(data);
       if (data != "") {
