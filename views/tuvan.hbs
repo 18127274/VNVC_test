@@ -36,7 +36,7 @@
 						<script type='text/x-handlebars-template' id='service-table'> </script>
 						<script type='text/x-handlebars-template' id='data_table_service'> </script>
 
-
+						<div class=" col-lg-12">
 						<ul class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" href="#home">Câu hỏi tư vấn</a></li>
 							{{!-- <li><a data-toggle="tab" href="#menu1">Vắc xin cho trẻ em</a></li>
@@ -50,6 +50,8 @@
 
 							</select>
 						</div>
+						</div>
+						<div class=" col-lg-12">
 						<div class="tab-content">
 
 							<div id="home" class="tab-pane fade in active">
@@ -100,7 +102,7 @@
 							</div> --}}
 
 						</div>
-
+</div>
 
 
 
@@ -134,6 +136,7 @@
 
 						<!-- Table -->
 						<div class="card shadow mb-2">
+						
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">ĐẶT CÂU HỎI</h6>
 							</div>
@@ -195,11 +198,32 @@
 								</form>
 								<div class="col-12">
 									<form action="/dangkytiem_lienhe" id="post_cauhoi">
-										<input type="submit" class="btn btn-primary" value="Gửi câu hỏi">
+										<input type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#guicauhoi" value="Gửi câu hỏi" >
 									</form>
 								</div>
 							</div>
 						</div>
+
+
+						<div id="guicauhoi" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title">Thông báo</h4>
+      </div>
+      <div class="modal-body">
+        <p>Gửi câu hỏi thành công</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 					</div>
 				</div>
@@ -309,3 +333,4 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
