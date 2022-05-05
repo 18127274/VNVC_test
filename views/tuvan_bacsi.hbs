@@ -59,7 +59,7 @@
 							<h3>Danh sách câu hỏi theo chủ đề</h3>
 							<div id="home" class="tab-pane fade in active">
 
-								<div class="card shadow mb-2">
+								{{!-- <div class="card shadow mb-2">
 									<div class="card-header py-3">
 										<ul>
 											<li>
@@ -75,10 +75,10 @@
 												<div id="demo" class="collapse">
 													<br>
 													<textarea class="form-control" id="ans" rows="3"></textarea>
-													<form id="post_ans">
-														<input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#guicautraloi"
-															value="Gửi câu trả lời">
-													</form>
+													<button id="post_ans" type="button" class="btn btn-primary"
+														data-toggle="modal" data-target="#guicautraloi">
+														Gửi câu trả lời
+													</button>
 												</div>
 											</li>
 
@@ -86,7 +86,7 @@
 										</ul>
 									</div>
 
-								</div> 
+								</div> --}}
 
 							</div>
 						</div>
@@ -195,31 +195,20 @@
 					"<div id=\"demo\" class=\"collapse\">" +
 					"<br>" +
 					"<textarea class=\"form-control\" id=\"ans\" rows=\"3\"></textarea>" +
-					"<form id=\"post_ans\">" +
-					"<input type=\"submit\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#guicautraloi\" value=\"Gửi câu trả lời\">" +
-					"</form>" +
+
+					"<button id=\"post_ans\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#guicautraloi\">" + 
+						"Gửi câu trả lời" + 
+					"</button>" + 
+
 					"</div>" +
 					"</li>" +
 					"</ul>" +
 					"</div>" +
 					"</div>";
 
-					/*"<div id=\"guicautraloi\" class=\"modal fade\" role=\"dialog\">" + 
-						"<div class=\"modal-dialog\">" + 
-						
-							"<div class=\"modal-content\">" + 
-								"<div class=\"modal-header\">" + 
-									"<h4 class=\"modal-title\">Thông báo</h4>" + 
-								"</div>"  + 
-								"<div class=\"modal-body\">" + 
-									"<p>Gửi thành công</p>" + 
-								"</div>" + 
-								"<div class=\"modal-footer\">" + 
-									"<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Close</button>" + 
-								"</div>" + 
-							"</div>" + 
-						"</div>" + 
-					"</div>";*/
+			
+
+
 			}
 			document.getElementById("home").innerHTML = ele.innerHTML;
 		});
