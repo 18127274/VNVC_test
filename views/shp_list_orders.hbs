@@ -1,291 +1,461 @@
-<!DOCTYPE html>
-<html>
+<script src="../javascripts/api.js"></script>
+<script type="text/javascript" src="../javascripts/booking.js"> </script>
+<script type="text/javascript" src="../javascripts/cart.js"> </script>
+<script type="text/javascript" src="../javascripts/nc_service.js"> </script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/stylebutton.css" />
+<img class="card-img" src="/Header.png" alt="..." />
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Sundara - Admin</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    {{!--
-    <link href="css/styles.css" rel="stylesheet" /> --}}
-
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-
-
-
-    <script src="../javascripts/api.js"></script>
-    <script type="text/javascript" src="../javascripts/cart.js"> </script>
-    <script type="text/javascript" src="../javascripts/booking.js"> </script>
-    <script type="text/javascript" src="../javascripts/nc_service.js"> </script>
-</head>
-
-
-
-<body>
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="/shipper">Shipper</a>
-
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-
-                        <div class="sb-sidenav-menu-heading">Đơn hàng đang chờ</div>
-                        <a class="nav-link collapsed" href="http://localhost:8888/orders" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Orders
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        {{!-- <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout.hbs">Service</a>
-                            </nav>
-                        </div> --}}
-
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                {{!-- <a class="nav-link" href="../../test2/views/nc_service.hbs">Service</a> --}}
-                                <a class="nav-link" href="/shp_list_orders">Orders</a>
-
-                            </nav>
-                        </div>
-
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                {{!-- <a class="nav-link" href="../../test2/views/nc_service.hbs">Service</a> --}}
-                                <a class="nav-link" href="/orders">My Orders</a>
-
-                            </nav>
-                        </div>
-                       
-
-                    </div>
+<!--introservice-->
+<!--<header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-4">
+                    <h1 class="fw-bolder">Chào mừng bạn đến Đi Chợ Thuê</h1>
+                    <img class="card-img" src="/Header.png" alt="..." />
                 </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-
-                </div>
-            </nav>
-        </div>
-
-        <div id="layoutSidenav_content">
-            <div class="container-fluid px-4">
-                <h1 class="mt-4">Danh sách đơn hàng đang chờ</h1>
-                <ol class="breadcrumb mb-4">
-
-                </ol>
-
-                <div class="mt-4 mb-4">
-                    <form class="d-none d-sm-inline-block form-inline  navbar-search" id="add5">
-                        <div class="input-group">
-                            <input id="search_service" type="search" class="form-control bg-light border-0 small"
-                                placeholder="Search for...">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-                <!-- Table -->
-                <div class="card shadow mb-2">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Danh sách đơn hàng đang chờ</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th hidden>MaDH</th>
-                                        <th>Phí ship</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Tình trạng đơn hàng</th>
-                                        <th>Ngày lập đơn</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="data_table_service">
-
-
-                                </tbody>
-
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-
             </div>
+</header>-->
+<!-- Page content-->
+<div class="bg-white">
+	<div class="container py-5">
+
+		<div class="row">
+			<!-- Side widgets-->
+			<div class="col-lg-8">
+				<!-- Search widget-->
+
+				<div class="row">
+
+					<form class="row g-3">
+						<h3><b>Thông tin người tiêm</b></h3>
+						<div class="col-md-6">
+							<label for="validationDefault01" class="form-label"><b>Họ tên người tiêm *</b></label>
+							<input type="text" class="form-control" id="name" required>
+						</div>
+						<div class="col-md-3">
+							<label for="validationDefault02" class="form-label"><b>Ngày sinh người tiêm *</b></label>
+							<input type="date" class="form-control" id="dateofbird" required>
+						</div>
+
+						<div class="col-md-3">
+							<label for="validationDefault04" class="form-label"><b>Giới tính *</b></label>
+							<select class="form-select" id="gender" required>
+								<option selected disabled value="">Choose...</option>
+								<option value="0">Nam</option>
+								<option value="1">Nữ</option>
+							
+							</select>
+						</div>
+
+
+						<div class="col-md-4">
+							<label for="validationDefault05" class="form-label"><b>Tỉnh/ Thành *</b></label>
+							<select class="form-select" id="city" single onchange="validateSelectBox(this)">
+								<option selected disabled value="">Tỉnh/Thành</option>
+
+							</select>
+						</div>
+
+						<div class="col-md-4">
+							<label for="validationDefault06" class="form-label"><b>Quận/ Huyện
+									*</b></label>
+							<select class="form-select" id="hometown" single onchange="validateSelectBox1(this)">
+
+								<option value="">Quận/Huyện</option>
+
+							</select>
+						</div>
+
+						<div class="col-md-4">
+							<label for="validationDefault07" class="form-label"><b>Phường/ Xã *</b></label>
+							<select class="form-select" id="wards" required>
+
+								<option value="">Phường/Xã</option>
+
+							</select>
+						</div>
+
+						<div class="col-md-12">
+							<label for="validationDefault08" class="form-label"><b>Số nhà, tên đường *</b></label>
+							<input type="text" class="form-control" id="address" required>
+						</div>
+
+
+						
 
 
 
 
-            <!-- delete row -->
-            <script>
-                function deleteRow(r) {
-                    var id_shp = localStorage.getItem("senddata_login_shipper");
-                    id_shp = JSON.parse(id_shp);
-                    console.log(id_shp[0].id);
+						<div class="col-md-12">
+							<label for="validationDefault010" class="form-label"><b>Trung tâm VNVC mong muốn tiêm
+									*</b></label>
+							<select class="form-select" id="hub" required>
 
-                    var i = r.parentNode.parentNode.rowIndex;
-                    var j = document.getElementsByTagName("tr")[i];
-                    var index = j.childNodes[0].innerHTML;
-                    console.log(index);
-                    var r = confirm("Bạn có chắc muốn nhận đơn hàng này?");
+								<option value="">...</option>
 
-                    if (r == true) {
-                        console.log("caccccccc");
-                        Receive_order(id_shp[0].id, index);
-                        document.getElementById("myTable").deleteRow(i);
-                       
-                    } else {
-                        
-                    }
+							</select>
+						</div>
+						<div class="col-md-12">
+							<label for="validationDefault02" class="form-label"><b>Ngày mong muốn tiêm *</b></label>
+							<input type="date" class="form-control" id="date" required>
+						</div>
+					</form>
+					<div class="col-12">
+						<form action="/dangkytiem_lienhe" id="add1">
+							<input type="submit" class="btn btn-primary" value="Tiếp tục">
+						</form>
+					</div>
+
+					<!-- -->
+				</div>
+
+			</div>
+			<div class="col-lg-4">
+				<div class="row">
+					<img src="/bg1.jpg">
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
 
 
+<script>
+	$('#category-tabs li a').click(function () {
+		$(this).next('ul').slideToggle('500');
+		$(this).find('i').toggleClass('fa-minus fa-plus ')
+	});
 
-                }
-            </script>
-
-            <script type='text/x-handlebars-template' id='service-table3'> </script>
-            <script type='text/x-handlebars-template' id='data_table_service'> </script>
-
-
-
-
-
-            {{!-- search service --}}
-            <script>
-                function search_service() {
-                    document.getElementById("data_table_service").innerHTML = "";
-                    var temp_service = document.getElementById('search_service').value;
-                    console.log(temp_service);
-                    getServices_byname(temp_service, (result) => {
-                        var birds = result;
-                        var html = "<input type=\"button\" value=\"Delete\" onclick=\"deleteRow(this)\">";
-                        var ele = document.getElementById('data_table_service');
-                        for (var i = 0; i <= birds.length; i++) {
-                            // POPULATE SELECT ELEMENT WITH JSON.
-                            ele.innerHTML = ele.innerHTML + "<tr>" +
-                                "<td>" + birds[i].MaDH + "</td>" +
-                                "<td>" + birds[i].Mashipper + "</td>" +
-                                "<td>" + birds[i].phiship + "</td>" +
-                                "<td>" + birds[i].tongtien + "</td>" +
-                                "<td>" + birds[i].tinhtrangthanhtoan + "</td>" +
-                                "<td>" + birds[i].ngaylapdon + "</td>" +
-
-                                "<td>" + html + "</td></tr>";
-                        }
-                        document.getElementById("data_table_service").innerHTML = ele;
-                    });
-                }
-            </script>
-
-            <script>
-                var form = document.getElementById('add5');
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    search_service();
-                });
-
-            </script>
-
-            {{!-- đổ dữ liệu lên table --}}
-            <script>
-                get_noorders((result) => {
-
-                    var birds = result;
-
-                    var html = "<input type=\"button\" value=\"Nhận đơn\" onclick=\"deleteRow(this)\">";
-                    var ele = document.getElementById('data_table_service');
-
-                    for (var i = 0; i < birds.length; i++) {
-
-                        // POPULATE SELECT ELEMENT WITH JSON.
-                        ele.innerHTML = ele.innerHTML + "<tr>" +
-                            "<td hidden>" + birds[i].id + "</td>" + 
-                            "<td>" + birds[i].phiShip + "</td>" +
-                            "<td>" + birds[i].tongTien + "</td>" +
-                            "<td>" + birds[i].tinhTrangDonHang + "</td>" +
-                            "<td>" + birds[i].ngayLapDon + "</td>" +
-                            "<td>" + html + "</td></tr>";
-                    }
-
-                    document.getElementById("data_table_service").innerHTML = ele.innerHTML;
-
-                });
-            </script>
+</script>
 
 
 
 
+<script type='text/x-handlebars-template' id='service-table'></script>
+<script type='text/x-handlebars-template' id='service-table1'></script>
+<script type='text/x-handlebars-template' id='allservices'></script>
+
+<script language="javascript">
+
+	function validateSelectBox(obj) {
+
+		var options = obj.children;
+
+		// Biến lưu trữ các chuyên mục đa chọn
+		var html = '';
+		// lặp qua từng option và kiểm tra thuộc tính selected
+		for (var i = 0; i < options.length; i++) {
+			if (options[i].selected) {
+				html += options[i].value;
+			}
+		}
+
+		// hien thi quan huyen tuong ung voi thanh pho
+		document.getElementById('hometown').innerHTML = "";
+		get_allhometown(html, (result) => {
+			var birds = result;
+			var ele = document.getElementById('hometown');
+			for (var i = 0; i <= birds.payload.length; i++) {
+				// POPULATE SELECT ELEMENT WITH JSON.
+				ele.innerHTML = ele.innerHTML +
+					'<option value="' + birds.payload[i].id + '">' + birds.payload[i].name + '</option>';
+			}
+		});
 
 
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
+	}
+	function validateSelectBox1(obj) {
+		var options = obj.children;
+		// Biến lưu trữ các chuyên mục đa chọn
+		var html = '';
+		// lặp qua từng option và kiểm tra thuộc tính selected
+		for (var i = 0; i < options.length; i++) {
+			if (options[i].selected) {
+				html += options[i].value;
+			}
+		}
+		console.log(html);
+		/*hien thi cac phuong xa de chon*/
+		document.getElementById('wards').innerHTML = "";
+		get_allwards(html, (result) => {
+			var birds = result;
+			var ele = document.getElementById('wards');
+			for (var i = 0; i <= birds.payload.length; i++) {
+				// POPULATE SELECT ELEMENT WITH JSON.
+				ele.innerHTML = ele.innerHTML +
+					'<option value="' + birds.payload[i].id + '">' + birds.payload[i].name + '</option>';
+			}
+		});
+
+	}
+
+	function validateSelectBox2(obj) {
+		var options = obj.children;
+		// Biến lưu trữ các chuyên mục đa chọn
+		var html = '';
+		// lặp qua từng option và kiểm tra thuộc tính selected
+		for (var i = 0; i < options.length; i++) {
+			if (options[i].selected) {
+				html += options[i].value;
+			}
+		}
+		/*hien thi cac trung tam tiem de chon*/
+		document.getElementById('hub').innerHTML = "";
+		get_allhub(html, (result) => {
+			var birds = result;
+			var ele = document.getElementById('hub');
+			for (var i = 0; i <= birds.payload.length; i++) {
+				// POPULATE SELECT ELEMENT WITH JSON.
+				ele.innerHTML = ele.innerHTML +
+					'<option value="' + birds.payload[i].id + '">' + birds.payload[i].name + '</option>';
+			}
+		});
+
+	}
+
+</script>
+
+{{!-- hien thi theo lua chon vac xin goi hoac vac xin le --}}
+<script>
+	/*function list_all_category_vacxin(id, id_menu) {
+		document.getElementById(id_menu).innerHTML = "";
+		var ele = document.getElementById(id_menu);
+
+		if (id == 0) {
+			get_all_phanloai((result) => {
+
+				localStorage.setItem("luu_mang_goitiem", JSON.stringify(result));
+				for (var i = 0; i < result.payload.length; i++) {
+					ele.innerHTML = ele.innerHTML +
+						"<ul id=\"category-tabs\">" +
+						"<li id = \"cate" + result.payload[i].id + "\">" + " <a href=\"javascript:void\" class=\"main-category\">" + result.payload[i].Ten + "</a>" +
+						"</li>" +
+						"</ul>";
+
+				}
+				document.getElementById(id_menu).innerHTML = ele.innerHTML;
+
+				/*for (var k = 0; k < result.payload.length; k++) {
+					//console.log("do dai:", result.payload.length);
+
+					var ele1 = document.getElementById(result.payload[k].id);
+					list_all_goivacxin(k, (result1) => {
+						console.log(k);
+						console.log(result1);
+						for (var j = 0; j < result1.payload.length; j++) {
+							ele1.innerHTML = ele1.innerHTML +
+								"<ul class=\"list-group\">" +
+								"<li class=\"list-group-item\">" +
+								"<input class=\"form-check-input me-1\" type=\"checkbox\" aria-label=\"...\">" +
+								"<li>" + result1.payload[j].Ten + "</li>" +
+								"<li>" + result1.payload[j].GiaTien + "</li>" +
+								"</li>" +
+								"</ul>";
+						}
+						console.log("id: ", result.payload[k].id);
+						document.getElementById(result.payload[k].id).innerHTML = ele1.innerHTML;
+						console.log("id tag:", ele1);
+					});
+				}
+			});*/
+
+		
+			/*var arr_cate = localStorage.getItem("luu_mang_goitiem");
+			arr_cate = JSON.parse(arr_cate);
+			console.log("do dai mang goi tiem: ", arr_cate);
+
+			var ele1 = document.getElementById("cate1");
+			console.log(ele1);
+
+
+			//for (var k = 0; k < arr_cate.payload.length; k++) {
+			//	var ele1 = document.getElementById(arr_cate.payload[k].id);
+			//	console.log(arr_cate.payload[k].id);
+			//	console.log(ele1);
+			/*list_all_goivacxin(arr_cate.payload[k].id, (result1) => {
+				console.log(arr_cate.payload[k].id);
+				console.log(result1);
+				for (var j = 0; j < result1.payload.length; j++) {
+					ele1.innerHTML = ele1.innerHTML +
+						"<ul class=\"list-group\">" +
+						"<li class=\"list-group-item\">" +
+						"<input class=\"form-check-input me-1\" type=\"checkbox\" aria-label=\"...\">" +
+						"<li>" + result1.payload[j].Ten + "</li>" +
+						"<li>" + result1.payload[j].GiaTien + "</li>" +
+						"</li>" +
+						"</ul>";
+				}
+				//console.log("id: ", result.payload[k].id);
+				document.getElementById(arr_cate.payload[k].id).innerHTML = ele1.innerHTML;
+				//console.log("id tag:", ele1);
+			});*/
+			//}
 
 
 
 
 
-    <link href="../stylesheets/dataTable.bootstrap4.min.css" rel="stylesheet">
+			/*get_all_phanloai((result)=>{
+				for (var i = 0; i < result.payload.length; i++) {
+					list_all_goivacxin((result1)=>{
+					for (var j = 0; j < result1.payload.length; j++) {
+						ele.innerHTML = ele.innerHTML +
+						"<ul id=\"category-tabs\">" + 
+						"<li id = \""+payload[i].id+"\">" +" <a href=\"javascript:void\" class=\"main-category\">" + payload[i].Ten "</a>" + 
+						"<ul class=\"list-group\">" + 
+							"<li class=\"list-group-item\">" + 
+								<input class="form-check-input me-1" type="checkbox" value="" aria-label="...">			
+							"</li>" + 
+						"</ul>" + 
+						"</li>" + 
+						"</ul>";
+					}
+					});
+				}
+				document.getElementById(id_menu).innerHTML = ele.innerHTML;
+			})*/
 
-    <script src="../javascripts/jquery.dataTable.min.js"></script>
-    <script src="../javascripts/dataTable.bootstrap4.min.js"></script>
+			/*get_all_phanloai((result)=>{
+			for (var i = 0; i < result.payload.length; i++) {
+				list_all_goivacxin((result1)=>{
+				for (var j = 0; j < birds.payload.length; j++) {
+					ele.innerHTML = ele.innerHTML +
+					"<ul id=\"category-tabs\">" + 
+					"<li>" +" <a href=\"javascript:void\" class=\"main-category\">" + payload[i].Ten + "</a>" + 
+					<ul class="list-group">
+						<li class="list-group-item">
+							<input class="form-check-input me-1" type="checkbox" value="" aria-label="...">			
+						</li>
+					</ul>
+					</li>
+					</ul>
+				}
+				});
+			}
+			document.getElementById(id_menu).innerHTML = ele.innerHTML;
+		})
+		}
 
-    <!-- Page level custom scripts -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+	}
+	}
 
-</body>
 
-</html>
+	}*/
+		
+</script>
+
+<script>
+	get_allcity((result) => {
+		var birds = result;
+		var ele = document.getElementById('city');
+		for (var i = 0; i <= birds.payload.length; i++) {
+			// POPULATE SELECT ELEMENT WITH JSON.
+			ele.innerHTML = ele.innerHTML +
+				'<option value="' + birds.payload[i].id + '">' + birds.payload[i].name + '</option>';
+		}
+	});
+
+	get_allhub1((result) => {
+		var birds = result;
+		var ele = document.getElementById('hub');
+		for (var i = 0; i <= birds.payload.length; i++) {
+			// POPULATE SELECT ELEMENT WITH JSON.
+			ele.innerHTML = ele.innerHTML +
+				'<option value="' + birds.payload[i].id + '">' + birds.payload[i].name + '</option>';
+		}
+	});
+
+
+
+	var form = document.getElementById('add1');
+	form.addEventListener('submit', function (event) {
+		event.preventDefault();
+
+		var coookie_id = localStorage.getItem("cookie_cart");
+		//localStorage.setItem("cookie_cart", coookie_id);
+		var list_dsmua = localStorage.getItem("list_arr_product");
+		list_dsmua = list_dsmua.split(',');
+		list_dsmua = list_dsmua.filter(item => item !== '');
+		console.log(list_dsmua);
+
+		var list_dsmua_le = localStorage.getItem("list_arr_le");
+		list_dsmua_le = list_dsmua_le.split(',');
+		list_dsmua_le = list_dsmua_le.filter(item => item !== '');
+		console.log(list_dsmua_le);
+
+		var cookie_id = localStorage.getItem("cookie_cart");
+		
+		phanloaids = parseInt(phanloaids, 10);
+		var hoten = document.getElementById('name').value;
+		var ngaysinh = document.getElementById('dateofbird').value;
+		var gioitinh = document.getElementById('gender').value;
+		gioitinh = parseInt(gioitinh, 10);
+
+		//var sdt = document.getElementById('phone').value;
+		//sdt = sdt.slice(3);
+		//var email = document.getElementById('email').value;
+		var diachi = document.getElementById('address').value;
+		var tinhthanh = document.getElementById('city').value;
+		var quanhuyen = document.getElementById('hometown').value;
+		var phuongxa = document.getElementById('wards').value;
+		var trungtam = document.getElementById('hub').value;
+		var ngaytiem = document.getElementById('date').value;
+
+		console.log(coookie_id);
+		console.log(list_dsmua);
+
+		console.log(hoten);
+		console.log(gioitinh);
+		
+		console.log(diachi);
+		console.log(ngaysinh);
+
+		console.log(tinhthanh);
+		console.log(quanhuyen);
+		console.log(phuongxa);
+
+		console.log(trungtam);
+		console.log(ngaytiem);
+
+		if(list_dsmua != ""){
+			var phanloaids = 0;
+			add_product_into_cart1(coookie_id, hoten, gioitinh, null, null, diachi, ngaysinh, null, list_dsmua, phanloaids, tinhthanh, quanhuyen, phuongxa, trungtam, ngaytiem);
+		}
+		else if(list_dsmua_le != ""){
+			var phanloaids = 1;
+			add_product_into_cart(coookie_id, hoten, gioitinh, null, null, diachi, ngaysinh, null, list_dsmua, phanloaids, tinhthanh, quanhuyen, phuongxa, trungtam, ngaytiem);
+		}
+
+		});
+
+</script>
+
+
+<script>
+	(function () {
+		'use strict'
+
+		// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		var forms = document.querySelectorAll('.needs-validation')
+
+		// Loop over them and prevent submission
+		Array.prototype.slice.call(forms)
+			.forEach(function (form) {
+				form.addEventListener('submit', function (event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+
+					form.classList.add('was-validated')
+				}, false)
+			})
+	})()
+</script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/styles2.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

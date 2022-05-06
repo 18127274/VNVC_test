@@ -133,39 +133,7 @@
 				</div>
 			</div>
 
-			{{!-- <div class=" col-lg-4 py-5">
-				<h3><b>DANH SÁCH NGƯỜI TIÊM</b></h3>
-				<div class="table-responsive">
-					<ul id="list_cus">
 
-
-					</ul>
-
-				</div>
-				<div class="col-12">
-					<form id="add1">
-						<button class="btn btn-primary" type="submit">Thanh toán</button>
-					</form>
-				</div>
-			</div> --}}
-
-			{{!-- <div class=" col-lg-4 py-5">
-				<h3><b>DANH SÁCH NGƯỜI TIÊM</b></h3>
-				<div class="row " id="list_cus">
-
-					{{!-- <li>
-						<h5 class="fw-bolder">Vac xin 1</h5>
-						1.200.000đ<span class="close">x</span>
-					</li> --}}
-
-				</div>
-				<div class="col-12">
-					<form id="add1">
-						<button class="btn btn-primary" type="submit">Thanh toán</button>
-					</form>
-				</div>
-
-			</div> --}}
 
 
 
@@ -300,58 +268,20 @@
 				console.log("do dai goi: ", dsgoivacxin.payload.length);
 				for (var i = 0; i < chitietdonhang.payload.DSChiTiet.length; i++) { //vao trong all dschitiet
 					var tong_tien = chitietdonhang.payload.DonHang.TongTien;
-					//console.log("cac");
-					//console.log("vao i lan: " i);
+
 					var string_goivx = "";
-					//console.log(result.payload.DSChiTiet[i].DSMua);
+
 					for (var j = 0; j < chitietdonhang.payload.DSChiTiet[i].DSMua.length; j++) { // vao trong dsmua 
-						//console.log("vao j lan: ", j);
-						//console.log(result.payload.DSChiTiet[i].DSMua[0]);
-						//console.log("j: ", j);
+
 						for (var k = 0; k < dsgoivacxin.payload.length; k++) {//duyet qua mang all goi vac xin
-							//console.log("vao k lan: ", k);
+
 							if (chitietdonhang.payload.DSChiTiet[i].DSMua[j] == dsgoivacxin.payload[k].id) {
-								//		console.log("bang nhau lan:", k);
+
 								string_goivx = string_goivx + ', ' + dsgoivacxin.payload[k].Ten;
-								//console.log(string_goivx);
+
 							}
-
 						}
-
 					}
-					//console.log("vao i: ", i);
-					//console.log(chitietdonhang.payload.DSChiTiet[i].MaKH);
-
-
-					//ham_timtenkhachhangtheoid(chitietdonhang.payload.DSChiTiet[i].MaKH, (dskh) => {//
-					//console.log("vao i lan: ", i);
-					//tag_dskh += JSON.stringify(dskh);
-
-					//console.log(tag_dskh);
-					//localStorage.setItem("luu_dskh", tag_dskh);
-					//console.log(dskh);
-					//for (var t = 0; t < chitietdonhang.payload.DSChiTiet.length; t++) { //vao trong all dschitiet
-					//	ele.innerHTML = ele.innerHTML +
-					//		"<li>" +
-					//		"<h5 class=\"fw-bolder\">" + dskh.payload[0].Ten + '(' + chitietdonhang.payload.DSChiTiet[t].MoiQuanHe + ')' + "</h5>" +
-					//		"<h5>" + string_goivx + "</h5>" +
-					//		"<h5>" + "Thành tiền: " + chitietdonhang.payload.DSChiTiet[0].ThanhTien + "</h5>" +
-
-					//		"</li>";
-					//}
-					//console.log(chitietdonhang.payload.DSChiTiet[i].MaKH);
-
-
-					//console.log("giai mai: ",JSON.parse(x));
-
-					//"<div class=\"col-lg-6\">" + dskh.payload[0].Ten + '(' + chitietdonhang.payload.DSChiTiet[0].MoiQuanHe + ')' + "</div>" + "<p></p>" +
-					//"<div class=\"col-lg-6\">" + string_goivx + "</div>" + "<p></p>" +
-					//"<div class=\"col-lg-6\">" + "Giá tiền: " + chitietdonhang.payload.DonHang.TongTien + "</div>" + "<p></p>";
-					//});
-					//var x = localStorage.getItem("luu_dskh");
-
-					//console.log(JSON.parse(x));
-
 				}
 				string_goivx = string_goivx.replace(',', '');
 				var tag_dskh = "";

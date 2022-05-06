@@ -206,7 +206,7 @@
 
 		document.getElementById('home').innerHTML = "";
 		console.log(html);
-
+		var tenbacsi = localStorage.getItem("name_hotline");
 		get_all_ques_by_category(html, (result) => {
 			console.log(result);
 			var ele = document.getElementById('home');

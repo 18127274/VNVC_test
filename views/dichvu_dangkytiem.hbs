@@ -177,7 +177,7 @@
     function list_all_service1(type) {
         localStorage.setItem("laytype", type);
         document.getElementById("allservicess").innerHTML = "";
-
+        console.log(type);
         if (type == 0) {
             list_all_service((result) => {
                 var birds = result;
@@ -210,7 +210,9 @@
             });
         }
         else {
-            list_all_service_le((result) => {
+               
+            list_all_vacxinle((result) => {
+         
                 var birds = result;
                 console.log(result);
                 var ele = document.getElementById('allservicess');
@@ -286,6 +288,7 @@
     function list_view_product1(list_id) {
         console.log("list id view: ", list_id);
         localStorage.setItem("list_arr_le", list_id);
+        
         list_id = list_id.toString().split(',');
         console.log(list_id);
         list_all_vacxinle((result) => {
@@ -335,7 +338,7 @@
 
     localStorage.setItem("cache1", list_id_product_1);
     function add_service_tocart(id_product) {
-
+        localStorage.setItem("le_goi", 0);
         //check xem bien list_id_product co may ma san pham thi hien thi list dssp
         list_id_product_1 = localStorage.getItem("cache1");
         console.log("list_id truoc khi pump: " + list_id_product_1 + "");
@@ -391,7 +394,7 @@
 
     localStorage.setItem("cache2", list_id_product_2);
     function add_service_tocart1(id_product) {
-
+        localStorage.setItem("le_goi", 1);
         //check xem bien list_id_product co may ma san pham thi hien thi list dssp
         list_id_product_2 = localStorage.getItem("cache2");
         console.log("list_id truoc khi pump: " + list_id_product_2 + "");

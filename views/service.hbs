@@ -20,27 +20,68 @@
 	<div class="container py-5">
 
 		<div class="row">
-			
-		
-				<img class="card-img" src="/bg3.png">
-						
-	</div>
+			<!-- Side widgets-->
+			<div class="col-lg-8">
+				<!-- Search widget-->
 
-	<div class="container py-5">
+				<div class="row">
 
-		<div class="row">
-			
-		
-				<img class="card-img" src="/bg4.png">
-						
+					<form class="row g-3" id="add1">
+
+						<h3><b>Thông tin liên hệ</b></h3>
+						<div class="col-md-12">
+							<label for="validationDefault09" class="form-label"><b>Họ tên người liên hệ *</b></label>
+							<input type="text" class="form-control" id="name" required>
+						</div>
+						<div class="col-md-6">
+							<label for="validationDefault010" class="form-label"><b>Mối quan hệ với người tiêm
+									*</b></label>
+							<select class="form-select" id="relationship" required>
+								<option selected disabled value="">Choose...</option>
+								<option value="0">Cha</option>
+								<option value="1">Mẹ</option>
+								<option value="2">Ông</option>
+								<option value="3">Bà</option>
+								<option value="4">Bản thân</option>
+
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label for="validationDefault10" class="form-label"><b>Số điện thoại người liên hệ
+									*</b></label>
+							<input type="text" class="form-control" id="phone" required>
+						</div>
+
+						<div class="col-12">
+							<input type="submit" class="btn btn-primary" value="Hoàn thành đăng ký">
+						</div>
+					</form>
+					<!-- -->
+				</div>
+
+			</div>
+			<!-- Blog entries-->
+			<div class="col-lg-4">
+				<div class="row">
+					<img src="/bg1.jpg">
+				</div>
+
+			</div>
+
+
+
+		</div>
 	</div>
 </div>
-</div>
 
 
+<script>
+	$('#category-tabs li a').click(function () {
+		$(this).next('ul').slideToggle('500');
+		$(this).find('i').toggleClass('fa-minus fa-plus ')
+	});
 
-
-	
+</script>
 
 
 
@@ -50,6 +91,63 @@
 <script type='text/x-handlebars-template' id='allservices'></script>
 
 
+<div id="all-r"></div>
 
 
+<script>
+	var form = document.getElementById('add1');
+	form.addEventListener('submit', function (event) {
+		event.preventDefault();
+
+		var cookie_id = localStorage.getItem("cookie_cart");
+		var hoten = document.getElementById('name').value;
+		var sdt = document.getElementById('phone').value;
+		var moiquanhe = document.getElementById('relationship').value;
+		var ngaylapdon = Date();
+
+		var phanloaidh = "1";
+		var ttthanhtoan = "0";
+		var ptthanhtoan = "0";
+		
+		phanloaidh = parseInt(phanloaidh, 10);
+		ttthanhtoan = parseInt(ttthanhtoan, 10);
+		ptthanhtoan = parseInt(ptthanhtoan, 10);
+
+		console.log(ptthanhtoan);
+		console.log(ttthanhtoan);
+		console.log(ngaylapdon);
+		console.log(phanloaidh);
+		console.log(hoten);
+		console.log(sdt);
+		console.log(cookie_id);
+		add_booking(ptthanhtoan, ttthanhtoan, ngaylapdon, phanloaidh, hoten, null, sdt, null, null, null, null, null, cookie_id)
+
+	});
+
+</script>
+
+
+<script>
+	(function () {
+		'use strict'
+
+		// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		var forms = document.querySelectorAll('.needs-validation')
+
+		// Loop over them and prevent submission
+		Array.prototype.slice.call(forms)
+			.forEach(function (form) {
+				form.addEventListener('submit', function (event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+
+					form.classList.add('was-validated')
+				}, false)
+			})
+	})()
+</script>
 <link rel="stylesheet" type="text/css" href="/stylesheets/styles2.css" />
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
