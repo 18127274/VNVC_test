@@ -1,0 +1,491 @@
+<script src="../javascripts/api.js"></script>
+
+{{!--
+<script type="text/javascript" src="../javascripts/booking.js"> </script> --}}
+
+<script type="text/javascript" src="../javascripts/cart.js"> </script>
+<script type="text/javascript" src="../javascripts/nc_service.js"> </script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/stylebutton.css" />
+<img class="card-img" src="/Header.png" alt="..." />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../javascripts/booking.js"> </script>
+
+
+
+<!-- Page content-->
+<div class="bg-white">
+    <div class="container py-5">
+
+        <div class="row">
+            <!-- Side widgets-->
+            <div class="col-lg-3">
+                <!-- Search widget-->
+
+                <div class="row">
+                    <div class="card-body">
+                        <form class="form-inline my-5 my-lg-3" id="add4">
+                            <input class="form-control mr-sm-3 " id="search_service" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Categories widget-->
+
+                    <div class="title"><strong>Danh mục</strong></div>
+
+                    <p></p>
+                    <li class="fw-bolder"> Vắc xin gói </li>
+
+
+                    <ul id="category-tabs">
+                        <li><a href="javascript:void" class="main-category" onclick="list_all_service1(0)">Tất cả</a>
+
+                        </li>
+                    </ul>
+
+                    <ul id="category-tabs">
+                        <li><a href="javascript:void" class="main-category" href="javascript:void"
+                                onclick="list_service_bycategory(2)">Vắc xin cho người trưởng thành</a>
+
+                        </li>
+                    </ul>
+
+                    <ul id="category-tabs">
+                        <li><a href="javascript:void" class="main-category" href="javascript:void"
+                                onclick="list_service_bycategory(1)">Vắc xin cho trẻ em</a>
+
+                        </li>
+                    </ul>
+
+                    <p></p>
+                    <li class="fw-bolder"> Vắc xin lẻ </li>
+
+                    <ul id="category-tabs">
+                        <li><a href="javascript:void" class="main-category" onclick="list_all_service1(1)">Tất cả</a>
+
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <!-- Blog entries-->
+
+
+
+            <div class=" col-lg-6">
+                <!-- Nested row for non-featured blog posts-->
+                <div class="row" id="allservicess">
+
+                </div>
+                <!-- next page-->
+                <nav aria-label="Pagination">
+                    <hr class="my-0" />
+                    <ul class="pagination justify-content-center my-4">
+                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"
+                                aria-disabled="true">Newer</a></li>
+                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class=" col-lg-3">
+                <div class="card shadow mb-2">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH VẮC XIN CHỌN MUA
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <ul id="list_product">
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12">
+                    <form action="/dangkytiem" id="luu_cookie_id">
+                        <input type="submit" class="btn btn-primary" value="Tiếp tục">
+                    </form>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script type='text/x-handlebars-template' id='service-table'></script>
+<script type='text/x-handlebars-template' id='service-table1'></script>
+<script type='text/x-handlebars-template' id='allservices'></script>
+
+
+
+{{!-- hien thi san pham theo danh muc --}}
+<script>
+    function list_service_bycategory(id) {
+
+        document.getElementById("allservicess").innerHTML = "";
+        getlistservice_byidcategory(id, (result) => {
+            var birds = result;
+            var ele = document.getElementById('allservicess');
+
+            for (var i = 0; i < birds.payload.length; i++) {
+
+                ele.innerHTML = ele.innerHTML +
+                    "<div class=\"col-lg-6\">" +
+                    "<div class=\"card mb-4\">" +
+
+                    "<div class=\"card-body\">" +
+
+                    "<h2 class=\"card-title h4\">" + birds.payload[i].Ten + "</h2>" + birds.payload[i].GiaTien + '&nbsp' + "VNĐ" + "<br>" +
+
+                    "<button class=\"w-45 btn btn-primary btn-lg\" type=\"submit\">" +
+
+                    "<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[i].id + ")\" id=\"detai\" >Chọn</a>" +
+                    "</button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+            }
+            document.getElementById("allservicess").innerHTML = ele.innerHTML;
+        });
+    }
+</script>
+
+
+{{!-- hien thi tat ca cac vac xin goi hien co--}}
+<script>
+    function list_all_service1(type) {
+        localStorage.setItem("laytype", type);
+        document.getElementById("allservicess").innerHTML = "";
+
+        if (type == 0) {
+            list_all_service((result) => {
+                var birds = result;
+                console.log(result);
+                var ele = document.getElementById('allservicess');
+                for (var i = 0; i < birds.payload.length; i++) {
+
+                    ele.innerHTML = ele.innerHTML +
+                        "<div class=\"col-lg-6\">" +
+                        "<div class=\"card mb-4\">" +
+
+                        "<div class=\"card-body\">" +
+
+                        "<h2 class=\"card-title h4\">" + birds.payload[i].Ten + "</h2>" + birds.payload[i].GiaTien + '&nbsp' + "VNĐ" + "<br>" +
+
+                        "<button class=\"w-45 btn btn-primary btn-lg\" type=\"submit\">" +
+
+                        "<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[i].id + ")\" id=\"detai\" >Chọn</a>" +
+                        "</button>" +
+
+
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                }
+                /*"<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[0].id + ")\" id=\"detai\" >Chọn</a>" +*/
+                document.getElementById("allservicess").innerHTML = ele.innerHTML;
+
+
+            });
+        }
+        else {
+            list_all_service_le((result) => {
+                var birds = result;
+                console.log(result);
+                var ele = document.getElementById('allservicess');
+                for (var i = 0; i < birds.payload.length; i++) {
+
+                    ele.innerHTML = ele.innerHTML +
+                        "<div class=\"col-lg-6\">" +
+                        "<div class=\"card mb-4\">" +
+
+                        "<div class=\"card-body\">" +
+
+                        "<h2 class=\"card-title h4\">" + birds.payload[i].Ten + "<br>" +
+                        "<h2 class=\"card-title h4\">" + "Phòng bệnh: " + birds.payload[i].PhongBenh + "</h2>" + birds.payload[i].GiaTien + '&nbsp' + "VNĐ" + "<br>" +
+
+                        "<button class=\"w-45 btn btn-primary btn-lg\" type=\"submit\">" +
+
+                        "<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart1(" + birds.payload[i].id + ")\" id=\"detai\" >Chọn</a>" +
+                        "</button>" +
+
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                }
+                document.getElementById("allservicess").innerHTML = ele.innerHTML;
+            });
+        }
+    }
+    /*var ty = localStorage.getItem("laytype");
+    if (ty == 0) {
+        console.log(ty);
+        $(document).ready(function () {
+            $('#xuly2').remove();
+        });
+        //document.getElementById("xuly2").innerHTML = "";
+    }*/
+</script>
+
+
+
+{{!-- hien thi cac vac xin goi da chon mua --}}
+<script>
+    function list_view_product(list_id) {
+        console.log("list id view: ", list_id);
+        localStorage.setItem("list_arr_product", list_id);
+        list_id = list_id.toString().split(',');
+        list_all_service_by_id((result) => {
+            document.getElementById("list_product").innerHTML = "";
+            var birds = result;
+            var ele = document.getElementById('list_product');
+
+            for (var i = 0; i < birds.payload.length; i++) {
+
+                if (list_id[i] == birds.payload[i].id) {
+
+                    ele.innerHTML = ele.innerHTML +
+                        "<li>" +
+                        "<h5 class=\"fw-bolder\">" + birds.payload[i].Ten + "</h5>" + "Giá tiền: " + birds.payload[i].GiaTien + "VNĐ" + "<span class=\"close\" onclick = \"delete_id_service(" + birds.payload[i].id + ")\">" + "x" + "</span>" +
+                        "</li>";
+
+                }
+
+            }
+
+            document.getElementById("list_product").innerHTML = ele.innerHTML;
+        });
+    }
+
+</script>
+
+
+{{!-- hien thi cac vac xin le da chon mua --}}
+<script>
+    function list_view_product1(list_id) {
+        console.log("list id view: ", list_id);
+        localStorage.setItem("list_arr_le", list_id);
+        list_id = list_id.toString().split(',');
+        console.log(list_id);
+        list_all_vacxinle((result) => {
+            document.getElementById("list_product").innerHTML = "";
+            var birds = result;
+            var ele = document.getElementById('list_product');
+            for (var j = 0; j < list_id.length; j++) {
+                for (var i = 0; i < birds.payload.length; i++) {
+
+                    if (list_id[j] == birds.payload[i].id) {
+
+                        ele.innerHTML = ele.innerHTML +
+                            "<li>" +
+                            "<h5 class=\"fw-bolder\">" + birds.payload[i].Ten + "</h5>" + "Giá tiền: " + birds.payload[i].GiaTien + "VNĐ" + "<span class=\"close\" onclick = \"delete_id_service1(" + birds.payload[i].id + ")\">" + "x" + "</span>" +
+                            "</li>";
+
+                    }
+
+                }
+            }
+
+            document.getElementById("list_product").innerHTML = ele.innerHTML;
+        });
+    }
+
+</script>
+
+
+
+
+
+{{!-- xu ly ds mua vac xin goi --}}
+
+<script id="xuly1">
+    /*function xoa phan tu trung trong mang*/
+    function unique_arr(arr) {
+        let newArr = arr.reduce(function (accumulator, element) {
+            if (accumulator.indexOf(element) === -1) {
+                accumulator.push(element)
+            }
+            return accumulator
+        }, [])
+        return newArr
+    }
+
+    var list_id_product_1 = "";
+
+    localStorage.setItem("cache1", list_id_product_1);
+    function add_service_tocart(id_product) {
+
+        //check xem bien list_id_product co may ma san pham thi hien thi list dssp
+        list_id_product_1 = localStorage.getItem("cache1");
+        console.log("list_id truoc khi pump: " + list_id_product_1 + "");
+        list_id_product_1 = list_id_product_1 + id_product + ',';
+        localStorage.setItem("cache1", list_id_product_1);
+
+        list_id_product_1 = list_id_product_1.split(',');
+
+        console.log("list_id sau khi pump: " + list_id_product_1 + "");
+        list_id_product_1 = unique_arr(list_id_product_1);
+        /*list_view_product(list_id_product_1);*/
+        list_view_product(list_id_product_1);
+    }
+    /*unique_arr(list_id_product_1);
+    console.log("sau khi sua lai: " + list_id_product_1 + "");*/
+    function delete_id_service(id) {
+        console.log("id can xoa: ", id);
+        var list_id = localStorage.getItem("cache1");
+        //console.log(list_id);
+        list_id = list_id.split(',');
+        list_id = unique_arr(list_id);
+        console.log("chuyen thanh mang: ", list_id);
+        //console.log(list_id);
+        for (var i = 0; i < list_id.length - 1; i++) {
+            if (list_id[i] == id) {
+
+                list_id.splice(i, 1);
+            }
+        }
+        console.log("mang moi: ", list_id);
+        list_id = list_id.join();
+        console.log("chuyen thanh chuoi: ", list_id);
+        localStorage.setItem("cache1", list_id);
+        list_view_product(list_id);
+    }
+</script>
+
+{{!-- xu ly ds mua vac xin le --}}
+<script id="xuly2">
+    /*function xoa phan tu trung trong mang*/
+    var ty = localStorage.getItem("laytype");
+    function unique_arr1(arr) {
+        let newArr = arr.reduce(function (accumulator, element) {
+            if (accumulator.indexOf(element) === -1) {
+                accumulator.push(element)
+            }
+            return accumulator
+        }, [])
+        return newArr
+    }
+
+    var list_id_product_2 = "";
+
+    localStorage.setItem("cache2", list_id_product_2);
+    function add_service_tocart1(id_product) {
+
+        //check xem bien list_id_product co may ma san pham thi hien thi list dssp
+        list_id_product_2 = localStorage.getItem("cache2");
+        console.log("list_id truoc khi pump: " + list_id_product_2 + "");
+        list_id_product_2 = list_id_product_2 + id_product + ',';
+        localStorage.setItem("cache2", list_id_product_2);
+
+        list_id_product_2 = list_id_product_2.split(',');
+
+        console.log("list_id sau khi pump: " + list_id_product_2 + "");
+        list_id_product_2 = unique_arr1(list_id_product_2);
+
+
+        list_view_product1(list_id_product_2);
+
+
+
+    }
+
+    function delete_id_service1(id) {
+        console.log("id can xoa: ", id);
+        var list_id1 = localStorage.getItem("cache2");
+        //console.log(list_id);
+        list_id1 = list_id1.split(',');
+        list_id1 = unique_arr1(list_id1);
+        console.log("chuyen thanh mang: ", list_id1);
+        //console.log(list_id);
+        for (var i = 0; i < list_id1.length - 1; i++) {
+            if (list_id1[i] == id) {
+
+                list_id1.splice(i, 1);
+            }
+        }
+        console.log("mang moi: ", list_id1);
+        list_id1 = list_id1.join();
+        console.log("chuyen thanh chuoi: ", list_id1);
+        localStorage.setItem("cache2", list_id1);
+
+        list_view_product1(list_id1);
+
+    }
+</script>
+
+
+
+
+<script>
+    $('#category-tabs li a').click(function () {
+        $(this).next('ul').slideToggle('500');
+        $(this).find('i').toggleClass('fa-minus fa-plus ')
+    });
+
+
+</script>
+
+
+
+<script>
+    var form = document.getElementById('add1');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+    });
+</script>
+
+<script type="module">
+    import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
+    function get_nanoid() {
+        let x = nanoid();
+        return x;
+    }
+    var form = document.getElementById('luu_cookie_id');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var coookie_id = get_nanoid();
+        localStorage.setItem("cookie_cart", coookie_id);
+        window.location.assign("http://localhost:8889/dangkytiem");
+    });
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/styles2.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<script>
+    var closebtns = document.getElementsByClassName("close");
+    var i;
+
+    for (i = 0; i < closebtns.length; i++) {
+        closebtns[i].addEventListener("click", function () {
+            this.parentElement.style.display = 'none';
+        });
+    }
+</script>

@@ -181,6 +181,9 @@ router.get('/thanhtoan', function (req, res, next) {
 router.get('/tuvan_bacsi', function (req, res, next) {
   res.render('tuvan_bacsi', {layout: 'customer'}) 
 });
+router.get('/dichvu_dangkytiem', function (req, res, next) {
+  res.render('dichvu_dangkytiem', {layout: 'customer'}) 
+});
 
 
 

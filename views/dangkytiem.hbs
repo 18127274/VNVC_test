@@ -30,19 +30,20 @@
 						<h3><b>Thông tin người tiêm</b></h3>
 						<div class="col-md-6">
 							<label for="validationDefault01" class="form-label"><b>Họ tên người tiêm *</b></label>
-							<input type="text" class="form-control" id="validationDefault01" required>
+							<input type="text" class="form-control" id="name" required>
 						</div>
 						<div class="col-md-3">
 							<label for="validationDefault02" class="form-label"><b>Ngày sinh người tiêm *</b></label>
-							<input type="date" class="form-control" id="validationDefault02" required>
+							<input type="date" class="form-control" id="dateofbird" required>
 						</div>
 
 						<div class="col-md-3">
 							<label for="validationDefault04" class="form-label"><b>Giới tính *</b></label>
-							<select class="form-select" id="validationDefault04" required>
+							<select class="form-select" id="gender" required>
 								<option selected disabled value="">Choose...</option>
-								<option value="">Nữ</option>
-								<option value="">Nam</option>
+								<option value="0">Nam</option>
+								<option value="1">Nữ</option>
+							
 							</select>
 						</div>
 
@@ -76,7 +77,7 @@
 
 						<div class="col-md-12">
 							<label for="validationDefault08" class="form-label"><b>Số nhà, tên đường *</b></label>
-							<input type="text" class="form-control" id="validationDefault03" required>
+							<input type="text" class="form-control" id="address" required>
 						</div>
 
 
@@ -95,7 +96,7 @@
 								<p>*Chọn gói vắc xin</p>
 								{{!-- hien thi vac xin goi --}}
 								<ul id="category-tabs">
-									{{!-- <li><a href="javascript:void" class="main-category">Vắc xin cho trẻ em 0/9
+									<li><a href="javascript:void" class="main-category">Vắc xin cho trẻ em 0/9
 											tháng</a>
 										<ul class="list-group">
 											<li class="list-group-item">
@@ -104,7 +105,7 @@
 												Gói vắc xin linh động
 											</li>
 										</ul>
-									</li> --}}
+									</li>
 								</ul>
 
 
@@ -136,7 +137,7 @@
 						</div>
 						<div class="col-md-12">
 							<label for="validationDefault02" class="form-label"><b>Ngày mong muốn tiêm *</b></label>
-							<input type="date" class="form-control" id="validationDefault02" required>
+							<input type="date" class="form-control" id="date" required>
 						</div>
 					</form>
 					<div class="col-12">
@@ -258,18 +259,18 @@
 
 {{!-- hien thi theo lua chon vac xin goi hoac vac xin le --}}
 <script>
-	function list_all_category_vacxin(id, id_menu) {
+	/*function list_all_category_vacxin(id, id_menu) {
 		document.getElementById(id_menu).innerHTML = "";
 		var ele = document.getElementById(id_menu);
 
 		if (id == 0) {
 			get_all_phanloai((result) => {
-				
+
 				localStorage.setItem("luu_mang_goitiem", JSON.stringify(result));
 				for (var i = 0; i < result.payload.length; i++) {
 					ele.innerHTML = ele.innerHTML +
 						"<ul id=\"category-tabs\">" +
-						"<li id = \"" + result.payload[i].id + "\">" + " <a href=\"javascript:void\" class=\"main-category\">" + result.payload[i].Ten + "</a>" +
+						"<li id = \"cate" + result.payload[i].id + "\">" + " <a href=\"javascript:void\" class=\"main-category\">" + result.payload[i].Ten + "</a>" +
 						"</li>" +
 						"</ul>";
 
@@ -297,35 +298,40 @@
 						document.getElementById(result.payload[k].id).innerHTML = ele1.innerHTML;
 						console.log("id tag:", ele1);
 					});
-				}*/
+				}
+			});*/
 
-			});
-			var arr_cate = localStorage.getItem("luu_mang_goitiem");
+		
+			/*var arr_cate = localStorage.getItem("luu_mang_goitiem");
 			arr_cate = JSON.parse(arr_cate);
 			console.log("do dai mang goi tiem: ", arr_cate);
 
-			for (var k = 0; k < arr_cate.payload.length; k++) {
-				var ele1 = document.getElementById(arr_cate.payload[k].id);
+			var ele1 = document.getElementById("cate1");
+			console.log(ele1);
+
+
+			//for (var k = 0; k < arr_cate.payload.length; k++) {
+			//	var ele1 = document.getElementById(arr_cate.payload[k].id);
+			//	console.log(arr_cate.payload[k].id);
+			//	console.log(ele1);
+			/*list_all_goivacxin(arr_cate.payload[k].id, (result1) => {
 				console.log(arr_cate.payload[k].id);
-				console.log(ele1);
-				/*list_all_goivacxin(arr_cate.payload[k].id, (result1) => {
-					console.log(arr_cate.payload[k].id);
-					console.log(result1);
-					for (var j = 0; j < result1.payload.length; j++) {
-						ele1.innerHTML = ele1.innerHTML +
-							"<ul class=\"list-group\">" +
-							"<li class=\"list-group-item\">" +
-							"<input class=\"form-check-input me-1\" type=\"checkbox\" aria-label=\"...\">" +
-							"<li>" + result1.payload[j].Ten + "</li>" +
-							"<li>" + result1.payload[j].GiaTien + "</li>" +
-							"</li>" +
-							"</ul>";
-					}
-					//console.log("id: ", result.payload[k].id);
-					document.getElementById(arr_cate.payload[k].id).innerHTML = ele1.innerHTML;
-					//console.log("id tag:", ele1);
-				});*/
-			}
+				console.log(result1);
+				for (var j = 0; j < result1.payload.length; j++) {
+					ele1.innerHTML = ele1.innerHTML +
+						"<ul class=\"list-group\">" +
+						"<li class=\"list-group-item\">" +
+						"<input class=\"form-check-input me-1\" type=\"checkbox\" aria-label=\"...\">" +
+						"<li>" + result1.payload[j].Ten + "</li>" +
+						"<li>" + result1.payload[j].GiaTien + "</li>" +
+						"</li>" +
+						"</ul>";
+				}
+				//console.log("id: ", result.payload[k].id);
+				document.getElementById(arr_cate.payload[k].id).innerHTML = ele1.innerHTML;
+				//console.log("id tag:", ele1);
+			});*/
+			//}
 
 
 
@@ -369,10 +375,16 @@
 				});
 			}
 			document.getElementById(id_menu).innerHTML = ele.innerHTML;
-		})*/
+		})
 		}
 
+
 	}
+	}
+
+
+	}*/
+		
 </script>
 
 <script>
@@ -398,37 +410,68 @@
 
 
 
-	/*var form = document.getElementById('add1');
+	var form = document.getElementById('add1');
 	form.addEventListener('submit', function (event) {
 		event.preventDefault();
+
+		var coookie_id = localStorage.getItem("cookie_cart");
+		//localStorage.setItem("cookie_cart", coookie_id);
+		var list_dsmua = localStorage.getItem("list_arr_product");
+		list_dsmua = list_dsmua.split(',');
+		list_dsmua = list_dsmua.filter(item => item !== '');
+		console.log(list_dsmua);
+
+		var list_dsmua_le = localStorage.getItem("list_arr_le");
+		list_dsmua_le = list_dsmua_le.split(',');
+		list_dsmua_le = list_dsmua_le.filter(item => item !== '');
+		console.log(list_dsmua_le);
+
 		var cookie_id = localStorage.getItem("cookie_cart");
+		
+		phanloaids = parseInt(phanloaids, 10);
 		var hoten = document.getElementById('name').value;
-		var sdt = document.getElementById('phone').value;
-		var cmnd = document.getElementById('socmnd').value;
-		sdt = sdt.slice(3);
-		var email = document.getElementById('email').value;
+		var ngaysinh = document.getElementById('dateofbird').value;
+		var gioitinh = document.getElementById('gender').value;
+		gioitinh = parseInt(gioitinh, 10);
+
+		//var sdt = document.getElementById('phone').value;
+		//sdt = sdt.slice(3);
+		//var email = document.getElementById('email').value;
 		var diachi = document.getElementById('address').value;
 		var tinhthanh = document.getElementById('city').value;
 		var quanhuyen = document.getElementById('hometown').value;
 		var phuongxa = document.getElementById('wards').value;
-		var hinhthuc = document.getElementById('hinhthucthanhtoan').value;
+		var trungtam = document.getElementById('hub').value;
+		var ngaytiem = document.getElementById('date').value;
 
-		console.log(cookie_id);
+		console.log(coookie_id);
+		console.log(list_dsmua);
+
 		console.log(hoten);
-		console.log(sdt);
-		console.log(cmnd);
-		console.log(email);
+		console.log(gioitinh);
+		
 		console.log(diachi);
+		console.log(ngaysinh);
+
 		console.log(tinhthanh);
 		console.log(quanhuyen);
 		console.log(phuongxa);
-		console.log(hinhthuc);
-		});*/
 
+		console.log(trungtam);
+		console.log(ngaytiem);
 
+		if(list_dsmua != ""){
+			var phanloaids = 0;
+			add_product_into_cart(coookie_id, hoten, gioitinh, null, null, diachi, ngaysinh, null, 
+			list_dsmua, phanloaids, tinhthanh, quanhuyen, phuongxa, trungtam, ngaytiem);
+		}
+		//else if(list_dsmua_le != ""){
+		//	var phanloaids = 1;
+		//	add_product_into_cart(coookie_id, hoten, gioitinh, sdt, email, diachi, ngaysinh, null, 
+		//	list_dsmua, phanloaids, tinhthanh, quanhuyen, phuongxa, trungtam, ngaytiem);
+	//	}
 
-
-
+		});
 
 </script>
 

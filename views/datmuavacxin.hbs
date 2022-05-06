@@ -225,16 +225,18 @@
 	function list_view_product(list_id) {
 		console.log("list id view: ", list_id);
 		localStorage.setItem("list_arr_product", list_id);
-
+		list_id = list_id.toString().split(',');
 		list_all_service_by_id((result) => {
 			document.getElementById("list_product").innerHTML = "";
 			var birds = result;
 			var ele = document.getElementById('list_product');
-
+			console.log("do dai all goi: ", birds.payload.length);
+			
 			for (var i = 0; i < birds.payload.length; i++) {
-
+				console.log(list_id[i]);
+				console.log(birds.payload[i].id);
 				if (list_id[i] == birds.payload[i].id) {
-
+					console.log("bang nhau lan: ", i);
 					ele.innerHTML = ele.innerHTML +
 						"<li>" +
 						"<h5 class=\"fw-bolder\">" + birds.payload[i].Ten + "</h5>" + "Giá tiền: " + birds.payload[i].GiaTien + "VNĐ" + "<span class=\"close\" onclick = \"delete_id_service(" + birds.payload[i].id + ")\">" + "x" + "</span>" +
@@ -284,13 +286,13 @@
 
 		//check xem bien list_id_product co may ma san pham thi hien thi list dssp
 		list_id_product_1 = localStorage.getItem("cache1");
-		console.log("list_id truoc khi pump: " + list_id_product_1 + "");
+		//	console.log("list_id truoc khi pump: " + list_id_product_1 + "");
 		list_id_product_1 = list_id_product_1 + id_product + ',';
 		localStorage.setItem("cache1", list_id_product_1);
 
 		list_id_product_1 = list_id_product_1.split(',');
 
-		console.log("list_id sau khi pump: " + list_id_product_1 + "");
+		//console.log("list_id sau khi pump: " + list_id_product_1 + "");
 		list_id_product_1 = unique_arr(list_id_product_1);
 		/*list_view_product(list_id_product_1);*/
 		list_view_product(list_id_product_1);
@@ -298,33 +300,24 @@
 	/*unique_arr(list_id_product_1);
 	console.log("sau khi sua lai: " + list_id_product_1 + "");*/
 	function delete_id_service(id) {
-		console.log("id can xoa: ", id);
+		//console.log("id can xoa: ", id);
 		var list_id = localStorage.getItem("cache1");
 		//console.log(list_id);
 		list_id = list_id.split(',');
 		list_id = unique_arr(list_id);
-		console.log("chuyen thanh mang: ", list_id);
+		//console.log("chuyen thanh mang: ", list_id);
 		//console.log(list_id);
 		for (var i = 0; i < list_id.length - 1; i++) {
 			if (list_id[i] == id) {
-				
+
 				list_id.splice(i, 1);
 			}
 		}
-		console.log("mang moi: ", list_id);
+		//console.log("mang moi: ", list_id);
 		list_id = list_id.join();
-		console.log("chuyen thanh chuoi: ", list_id);
+		//console.log("chuyen thanh chuoi: ", list_id);
 		localStorage.setItem("cache1", list_id);
 		list_view_product(list_id);
-		
-	
-		
-		//	for(var i = 0; i < list_id.length < i++){
-		//	if(list_id[i] == id){
-
-		//	}
-		//}
-		//cache1
 	}
 </script>
 

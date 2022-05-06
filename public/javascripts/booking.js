@@ -128,6 +128,8 @@ function Register_account_supplier(name, username, pass, phone, email, address, 
 
 
 
+
+
 function delete_service_ofcart(idchitiet) {
   DELETE('http://localhost:8080/api/deletegiohang/' + idchitiet).then(res =>
     res.json().then(data => {
@@ -185,6 +187,26 @@ function list_all_service(callback) {
     })
   );
 }
+
+function list_all_service_le(callback) {
+  var array = [];
+
+  GET('http://localhost:8888/vacxin/get_all_vacxin').then(res =>
+    res.json().then(data => {
+
+      var template = $('#service-table').html();
+      var compiled = Handlebars.compile(template);
+
+      var contextualHtml = compiled({ allservices: data });
+      $('#allservices').html(contextualHtml);
+      array = data;
+
+      return callback(array);
+    })
+  );
+}
+
+
 
 function get_all_cus(callback) {
   var array = [];
@@ -662,11 +684,38 @@ function post_answer(id_ques, ans_content, id_hot) {
     "hotline_id": id_hot
   }).then(res =>
     res.json().then(data => {
-      console.log("add thanh cong");
-      console.log(data);
+      if(data.code == "0"){
+       /*  alert(data.message); */
+      }
+      else{
+        /* alert.window("Tài khoản hoặc mật khẩu không đúng, vui lòng nhập lại"); */
+        alert(data.message);
+      }
     })
   );
 }
+
+function login(user, pass) {
+  POST('http://localhost:8888/support/hotline/login', {
+    "username": user,
+    "password": pass
+  }).then(res =>
+    res.json().then(data => {
+      console.log(data.code);
+      if(data.code == "0"){
+        window.location = "http://localhost:8889/tuvan_bacsi"; 
+        localStorage.setItem("id_hotline", data.payload.hotline_id);
+        localStorage.setItem("name_hotline", data.payload.hotline_name);
+      }
+      else{
+        /* alert.window("Tài khoản hoặc mật khẩu không đúng, vui lòng nhập lại"); */
+        alert(data.message);
+      }
+    })
+  );
+}
+
+
 
 
 

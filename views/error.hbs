@@ -220,3 +220,45 @@ function list_view_cus2() {
 
 							//console.log("id trong ds mua: ", result.payload.DSChiTiet[i].PhanLoaiDS);
 							//console.log("id trong get all vacxin: ", result1.payload[k].id);
+
+
+							/*"<div id=\"guicautraloi\" class=\"modal fade\" role=\"dialog\">" +
+	"<div class=\"modal-dialog\">" +
+
+		"<div class=\"modal-content\">" +
+			"<div class=\"modal-header\">" +
+				"<h4 class=\"modal-title\">Thông báo</h4>" +
+				"</div>" +
+			"<div class=\"modal-body\">" +
+				"<p>Gửi thành công</p>" +
+				"</div>" +
+			"<div class=\"modal-footer\">" +
+				"<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Close</button>" +
+				"</div>" +
+			"</div>" +
+		"</div>" +
+	"</div>";*/
+
+
+	"<div class=\"card shadow mb-2\">" +
+					"<div class=\"card-header py-3\">" +
+					"<ul>" +
+					"<li>" +
+					"<h5 style=\"color:rgb(10, 10, 126);\">" +
+					"<b>" +
+					result.payload[i].question_content +
+					"</b>" +
+					"</h5>" +
+					"<h6>" + result.payload[i].customer_info.name + ',' + result.payload[i].customer_info.address + "</h6>" +
+					"<a href=\"#demo\" class=\"btn btn-primary\" data-toggle=\"collapse\">Trả lời</a>" +
+					"<div id=\"demo\" class=\"collapse\">" +
+					"<br>" +
+					"<textarea class=\"form-control\" id=\"ans\" rows=\"3\"></textarea>" +
+					"<form id=\"post_ans\">" +
+					"<input type=\"submit\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#guicautraloi\" value=\"Gửi câu trả lời\">" +
+					"</form>" +
+					"</div>" +
+					"</li>" +
+					"</ul>" +
+					"</div>" +
+					"</div>";

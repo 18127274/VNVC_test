@@ -84,9 +84,7 @@
         var password = document.getElementById('pass').value;
         console.log(usern);
         console.log(password);
-        if(usern == "bs01" && password == "123"){
-            window.location.assign("http://localhost:8889/tuvan_bacsi");
-        }
+        login(usern, password);
         //dangnhap_khachhang(usern, password);
         //var data_login = localStorage.getItem('senddata_login');
         /*console.log(JSON.parse(data_login));
