@@ -45,7 +45,8 @@
 							<div class="col-md-6">
 								<label for="validationDefault04" class="form-label"><b>Chọn loại câu hỏi theo chủ
 										đề</b></label>
-								<select class="form-select" id="category_ques" required onchange="validateSelectBox(this)">
+								<select class="form-select" id="category_ques" required
+									onchange="validateSelectBox(this)">
 									<option selected disabled value="">Choose...</option>
 
 								</select>
@@ -202,7 +203,8 @@
 								</form>
 								<div class="col-12">
 									<form action="/dangkytiem_lienhe" id="post_cauhoi">
-										<input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#guicauhoi" value="Gửi câu hỏi">
+										<input type="submit" class="btn btn-primary" data-toggle="modal"
+											data-target="#guicauhoi" value="Gửi câu hỏi">
 									</form>
 								</div>
 							</div>
@@ -304,31 +306,61 @@
 			var ele = document.getElementById('home');
 			for (var i = 0; i <= result.payload.length; i++) {
 				// POPULATE SELECT ELEMENT WITH JSON.
-				ele.innerHTML = ele.innerHTML +
-					"<div class=\"card shadow mb-2\">" +
-					"<div class=\"card-header py-3\">" +
-					"<ul>" +
-					"<li>" +
-					"<h5 style=\"color:rgb(10, 10, 126);\">" +
-					"<b>" + result.payload[i].question_content +
-					"</b>" +
-					"</h5>" +
-					"<h6>" + result.payload[i].customer_info.name + ',' + result.payload[i].customer_info.address + "</h6>" +
-					"<h6 style=\"text-align: right;\">1 Trả lời</h6>" + //dsds
-					"</li>" +
+				if (result.payload[i].answer_content == null) {
+					ele.innerHTML = ele.innerHTML +
+						"<div class=\"card shadow mb-2\">" +
+						"<div class=\"card-header py-3\">" +
+						"<ul>" +
+						"<li>" +
+						"<h5 style=\"color:rgb(10, 10, 126);\">" +
+						"<b>" + result.payload[i].question_content +
+						"</b>" +
+						"</h5>" +
+						"<h6>" + result.payload[i].customer_info.name + ',' + result.payload[i].customer_info.address + "</h6>" +
+						"<h6 style=\"text-align: right;\">0 Trả lời</h6>" + //dsds
+						"</li>" +
 
-					"<li>" +
-					"<h5 style=\"text-align: center;\">" +
-					"<b>" + result.payload[i].hotline_id +
-					"</b>" +
-					"</h5>" +
-					"<h6 style=\"text-align: center;\">" +
-					result.payload[i].answer_content +
-					"</h6>" +
-					"</li>" +
-					"</ul>" +
-					"</div>" +
-					"</div>";
+						"<li>" +
+						"<h5 style=\"text-align: center;\">" +
+						"<b>" +
+						"</b>" +
+						"</h5>" +
+						"<h6 style=\"text-align: center;\">" +
+
+						"</h6>" +
+						"</li>" +
+						"</ul>" +
+						"</div>" +
+						"</div>";
+				}
+				else {
+					ele.innerHTML = ele.innerHTML +
+						"<div class=\"card shadow mb-2\">" +
+						"<div class=\"card-header py-3\">" +
+						"<ul>" +
+						"<li>" +
+						"<h5 style=\"color:rgb(10, 10, 126);\">" +
+						"<b>" + result.payload[i].question_content +
+						"</b>" +
+						"</h5>" +
+						"<h6>" + result.payload[i].customer_info.name + ',' + result.payload[i].customer_info.address + "</h6>" +
+						"<h6 style=\"text-align: right;\">1 Trả lời</h6>" + //dsds
+						"</li>" +
+
+						"<li>" +
+						"<h5 style=\"text-align: center;\">" +
+						"<b>" + "Bác sĩ: " + result.payload[i].hotline_name +
+						"</b>" +
+						"</h5>" +
+						"<h6 style=\"text-align: center;\">" +
+						result.payload[i].answer_content +
+						"</h6>" +
+						"</li>" +
+						"</ul>" +
+						"</div>" +
+						"</div>";
+				}
+
 			}
 			document.getElementById("home").innerHTML = ele.innerHTML;
 		});

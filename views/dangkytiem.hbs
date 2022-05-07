@@ -54,23 +54,12 @@
 								<option value="1">Nữ</option>
 							</select>
 						</div>
-						<div class="col-md-6">
-							<label for="validationDefault04" class="form-label"><b>Mối quan
-									hệ</b></label>
-							<select class="form-select" id="relationship" required>
-								<option selected disabled value="">Choose...</option>
-								<option value="0">Cha</option>
-								<option value="1">Mẹ</option>
-								<option value="2">Ông</option>
-								<option value="3">Bà</option>
-								<option value="4">Bản thân</option>
-							</select>
-						</div>
+	
 						<div class="col-md-6">
 							<label for="validationDefault01" class="form-label"><b>Số điện thoại</b></label>
 							<input type="text" class="form-control" id="phone" required>
 						</div>
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<label for="validationDefault01" class="form-label"><b>Email</b></label>
 							<input type="text" class="form-control" id="email" required>
 						</div>
@@ -132,9 +121,7 @@
 									tiêm</b></label>
 							<input type="date" class="form-control" id="date" required>
 						</div>
-						<!-- Button trigger modal -->
-						{{!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#myModal">Tiếp tục</button> --}}
+	
 						<input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
 							value="Tiếp tục">
 					</form>
@@ -142,24 +129,7 @@
 
 					<!-- -->
 				</div>
-
 			</div>
-			{{!-- <!-- Blog entries-->
-			<div class=" col-lg-4 py-5">
-				<h3><b>DANH SÁCH NGƯỜI TIÊM</b></h3>
-				<div class="row " id="list_cus">
-					
-
-				</div>
-				<div class="col-12">
-					<form action="/thanhtoan">
-
-						<button class="btn btn-primary" type="submit">Thanh toán</button>
-					</form>
-				</div>
-
-			</div> --}}
-
 		</div>
 	</div>
 </div>
@@ -285,19 +255,10 @@
 	});
 </script>
 
-{{!--
-<script type="text/javascript">
-	const { nanoid } = require('nanoid');
-	var { nanoid } = require('nanoid');
-</script> --}}
 
 
 <script type="module">
-	/*import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
-	function get_nanoid() {
-		let x = nanoid();
-		return x;
-	}*/
+
 
 	var form = document.getElementById('add1');
 	form.addEventListener('submit', function (event) {
@@ -334,7 +295,7 @@
 		var ngaysinh = document.getElementById('dateofbird').value;
 		var gioitinh = document.getElementById('gender').value;
 		gioitinh = parseInt(gioitinh, 10);
-		var moiquanhe = document.getElementById('relationship').value;
+		var moiquanhe = 4;
 		moiquanhe = parseInt(moiquanhe, 10);
 		var sdt = document.getElementById('phone').value;
 		sdt = sdt.slice(3);

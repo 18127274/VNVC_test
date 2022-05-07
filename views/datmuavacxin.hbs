@@ -231,32 +231,35 @@
 			var birds = result;
 			var ele = document.getElementById('list_product');
 			console.log("do dai all goi: ", birds.payload.length);
-			
-			for (var i = 0; i < birds.payload.length; i++) {
-				console.log(list_id[i]);
-				console.log(birds.payload[i].id);
-				if (list_id[i] == birds.payload[i].id) {
-					console.log("bang nhau lan: ", i);
-					ele.innerHTML = ele.innerHTML +
-						"<li>" +
-						"<h5 class=\"fw-bolder\">" + birds.payload[i].Ten + "</h5>" + "Giá tiền: " + birds.payload[i].GiaTien + "VNĐ" + "<span class=\"close\" onclick = \"delete_id_service(" + birds.payload[i].id + ")\">" + "x" + "</span>" +
-						"</li>";
-					/*"<div class=\"col-lg-6\">" +
-					"<div class=\"card mb-4\">" +
+			console.log("result: ", result);
+			console.log("list_id: ", list_id);
+			for (var j = 0; j < list_id.length; j++) {
+				for (var i = 0; i < birds.payload.length; i++) {
+					console.log(list_id[i]);
+					console.log(birds.payload[i].id);
+					if (list_id[j] == birds.payload[i].id) {
+						console.log("bang nhau lan: ", i);
+						ele.innerHTML = ele.innerHTML +
+							"<li>" +
+							"<h5 class=\"fw-bolder\">" + birds.payload[i].Ten + "</h5>" + "Giá tiền: " + birds.payload[i].GiaTien + "VNĐ" + "<span class=\"close\" onclick = \"delete_id_service(" + birds.payload[i].id + ")\">" + "x" + "</span>" +
+							"</li>";
+						/*"<div class=\"col-lg-6\">" +
+						"<div class=\"card mb-4\">" +
+	
+						"<div class=\"card-body\">" +
+	
+						"<h2 class=\"card-title h4\">" + birds.payload[i].Ten + "</h2>" + birds.payload[i].GiaTien + '&nbsp' + "VNĐ" + "<br>" +
+	
+						"<button class=\"w-45 btn btn-primary btn-lg\" type=\"submit\">" +
+	
+						"<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[i].id + ")\" id=\"detai\" >Chọn</a>" +
+						"</button>" +
+						"</div>" +
+						"</div>" +
+						"</div>";*/
+					}
 
-					"<div class=\"card-body\">" +
-
-					"<h2 class=\"card-title h4\">" + birds.payload[i].Ten + "</h2>" + birds.payload[i].GiaTien + '&nbsp' + "VNĐ" + "<br>" +
-
-					"<button class=\"w-45 btn btn-primary btn-lg\" type=\"submit\">" +
-
-					"<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[i].id + ")\" id=\"detai\" >Chọn</a>" +
-					"</button>" +
-					"</div>" +
-					"</div>" +
-					"</div>";*/
 				}
-
 			}
 			/*"<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[0].id + ")\" id=\"detai\" >Chọn</a>" +*/
 			document.getElementById("list_product").innerHTML = ele.innerHTML;
