@@ -1,0 +1,295 @@
+<script src="../javascripts/api.js"></script>
+<script type="text/javascript" src="../javascripts/booking.js"> </script>
+<script type="text/javascript" src="../javascripts/cart.js"> </script>
+<script type="text/javascript" src="../javascripts/nc_service.js"> </script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/stylebutton.css" />
+<img class="card-img" src="/Header.png" alt="..." />
+
+<!--introservice-->
+<!--<header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-4">
+                    <h1 class="fw-bolder">Chào mừng bạn đến Đi Chợ Thuê</h1>
+                    <img class="card-img" src="/Header.png" alt="..." />
+                </div>
+            </div>
+</header>-->
+<!-- Page content-->
+
+
+
+<div class="bg-white">
+    <div class="container py-5">
+
+        <div class="row">
+            <!-- Side widgets-->
+            <div class=" col-lg-12">
+                <!-- Nested row for non-featured blog posts-->
+                <div class="row" id="allservicess">
+
+
+
+                </div>
+                <!-- next page-->
+                <div id="layoutSidenav_content">
+                    <div class="container-fluid px-4">
+
+                        <!-- delete row -->
+                        <script type='text/x-handlebars-template' id='service-table'> </script>
+                        <script type='text/x-handlebars-template' id='data_table_service'> </script>
+
+
+                        <div class=" col-lg-12">
+                            <div class="tab-content" id="list_cus">
+                                <h3>Thông tin đơn hàng</h3>
+
+
+                                <div id="layoutSidenav_content">
+                                    <div class="container-fluid px-4">
+                                        <!-- Table -->
+                                        <div class="card shadow mb-2">
+                                            <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary">Thông tin đơn hàng 1
+                                                </h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+
+                                                    <a href="#demo1" class="btn btn-primary" data-toggle="collapse">Xem
+                                                        đơn hàng</a>
+                                                    <div id="demo1" class="collapse">
+                                                        <br>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered" id="#" width="100%"
+                                                                    cellspacing="0">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Tên</th>
+                                                                            <th>Loại đơn hàng</th>
+                                                                            <th>Các Gói/vắc xin</th>
+                                                                            <th>Phương thức thanh toán</th>
+                                                                            <th>Tình trạng đơn hàng</th>
+                                                                            <th>Ngày lập đơn</th>
+                                                                            <th>Ngày tiêm</th>
+                                                                            <th>Thành tiền</th>
+
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <th colspan="4" style="text-align:center"
+                                                                                id="tongtien"> Tổng tiền</th>
+                                                                        </tr>
+
+
+                                                                    </thead>
+
+                                                                    <tbody id="data_table_service">
+
+
+                                                                    </tbody>
+
+                                                                </table>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Blog entries-->
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#category-tabs li a').click(function () {
+        $(this).next('ul').slideToggle('500');
+        $(this).find('i').toggleClass('fa-minus fa-plus ')
+    });
+</script>
+
+
+
+
+<script type='text/x-handlebars-template' id='service-table'></script>
+<script type='text/x-handlebars-template' id='service-table1'></script>
+<script type='text/x-handlebars-template' id='allservices'></script>
+
+
+<script>
+    var list_donhang = localStorage.getItem("id_donhangne");
+    list_donhang = JSON.parse(list_donhang);
+    console.log(list_donhang);
+    console.log(list_donhang.payload.length);
+
+    function list_view_cus2() {
+        // hien thi dc ten nguoi tiem, cac goi vac xin, trung tam tiem, tong tien
+
+        //console.log(localStorage.getItem("id_donhang"));
+        //console.log("------------------------------------tao vao roi ne");
+        var ele = document.getElementById('list_cus');
+        var ele1 = document.getElementById('tongtien');
+
+        // hien thi cac khung thong tin don hang theo so don hang
+        for (var t1 = 0; t1 < list_donhang.payload.length; t1++) {
+            ele.innerHTML = ele.innerHTML +
+                "<div id=\"layoutSidenav_content\">" +
+                "<div class=\"container-fluid px-4\">" +
+                "<div class=\"card shadow mb-2\">" +
+                "<div class=\"card-header py-3\">" +
+                "<h6 class=\"m-0 font-weight-bold text-primary\">" + "Thông tin đơn hàng 1" +
+                "</h6>" +
+                "</div>" +
+                "<div class=\"card-body\">" +
+                "<div class=\"table-responsive\">" +
+                "<a href=\"#demo" + t1 + "\" class=\"btn btn-primary\" data-toggle=\"collapse\" id = \"dh-" + t1 + "\" value = \"" + list_donhang.payload[t1].id + "\">" + "Xem đơn hàng" + "</a>" +
+                "<div id=\"demo" + t1 + "\" class=\"collapse\">" +
+                "<br>" +
+                "<div class=\"card-body\">" +
+                "<div class=\"table-responsive\">" +
+                "<table class=\"table table-bordered\" id=\"#\" width=\"100%\" cellspacing=\"0\">" +
+                "<thead>" +
+                "<tr id = \"tr" + t1 + "\">" +
+                "<th>Tên</th>" +
+                "<th>Loại đơn hàng</th>" +
+                "<th>Các Gói/vắc xin</th>" +
+                "<th>Phương thức thanh toán</th>" +
+                "<th>Tình trạng đơn hàng</th>" +
+                "<th>Ngày lập đơn</th>" +
+                "<th>Ngày tiêm</th>" +
+                "<th>Thành tiền</th>" +
+                "</tr>" +
+
+                "</thead>" +
+                "<tbody id=\"data_table_service_" + t1 + "\">" +
+                "</tbody>" +
+                "</table>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
+
+
+        }
+        document.getElementById("list_cus").innerHTML = ele.innerHTML;
+    }
+    list_view_cus2();
+
+    //view data thong tin chi tiet don hang ung voi tung don hang 
+
+    var element = document.getElementById("dh-0");
+    var text = element.getAttribute("id");
+    console.log(text);
+    console.log(typeof (text));
+
+    console.log(list_donhang);
+    for (var q = 0; q < list_donhang.payload.length; q++) {
+        ham_getdetailbooking_duatren_madonhang(list_donhang.payload[q].id, (chitietdonhang) => {
+            console.log("q lan: ", q);
+            console.log(list_donhang.payload[q].id);
+            console.log(chitietdonhang.payload.id);
+        })
+    }
+
+
+    /*for (var q = 0; q < list_donhang.payload.length; q++) {
+        var ele2 = document.getElementById("data_table_service_" + q + "");
+        var ele3 = document.getElementById("tr" + q + "");
+        console.log("trong ele2:", ele2);
+        ham_timtengoivacxin((dsgoivacxin) => {
+            console.log("do dai goi: ", dsgoivacxin.payload.length);
+            for (var i = 0; i < list_donhang.payload.DSChiTiet.length; i++) { //vao trong all dschitiet
+                var tong_tien = list_donhang[q].payload.DonHang.TongTien;
+
+                var string_goivx = "";
+
+                for (var j = 0; j < list_donhang[q].payload.DSChiTiet[i].DSMua.length; j++) { // vao trong dsmua 
+
+                    for (var k = 0; k < dsgoivacxin.payload.length; k++) {//duyet qua mang all goi vac xin
+
+                        if (list_donhang[q].payload.DSChiTiet[i].DSMua[j] == dsgoivacxin.payload[k].id) {
+
+                            string_goivx = string_goivx + ', ' + dsgoivacxin.payload[k].Ten;
+
+                        }
+                    }
+                }
+            }
+            string_goivx = string_goivx.replace(',', '');
+            var tag_dskh = "";
+            //console.log("i : ", i);
+            get_all_cus((dskh) => {
+                for (var k = 0; k < list_donhang[q].payload.DSChiTiet.length; k++) {
+                    //console.log(dskh);
+                    //console.log("vao i lan: ", i);
+                    for (var t = 0; t < dskh.payload.length; t++) { //vao trong all dskh
+                        if (list_donhang[q].payload.DSChiTiet[k].MaKH == dskh.payload[t].id) {
+                            ele2.innerHTML = ele2.innerHTML +
+                                "<th>Tên</th>" +
+                                "<th>Loại đơn hàng</th>" +
+                                "<th>Các Gói/vắc xin</th>" +
+                                "<th>Phương thức thanh toán</th>" +
+                                "<th>Tình trạng đơn hàng</th>" +
+                                "<th>Ngày lập đơn</th>" +
+                                "<th>Ngày tiêm</th>" +
+                                "<th>Thành tiền</th>" +
+                                "<td>" + dskh.payload[t].Ten + '(' + list_donhang[q].payload.DSChiTiet[k].MoiQuanHe + ')' + "</td>" +
+                                "<td>" + list_donhang[q].payload.DonHang.PhanLoaiDH + "</td>" +
+                                "<td>" + string_goivx + "</td>" +
+                                "<td>" + list_donhang[q].payload.DonHang.PhuongThucThanhToan + "</td>" +
+                                "<td>" + list_donhang[q].payload.DonHang.TinhTrangThanhToan + "</td>" +
+                                "<td>" + list_donhang[q].payload.DonHang.NgayLapDon + "</td>" +
+                                "<td>" + list_donhang[q].payload.DSChiTiet[k].NgayMuonTiem + "</td>" +
+                                "<td>" + list_donhang[q].payload.DSChiTiet[k].ThanhTien + "</td>";
+                        }
+                    }
+                }
+
+
+            });
+            document.getElementById("data_table_service_" + q + "").innerHTML = ele2.innerHTML;
+            //them cot tong tien
+            ele3.innerHTML = ele3.innerHTML +
+                "<tr>" +
+                "<th colspan=\"4\" style=\"text-align:center\"> Tổng tiền</th>" +
+                "<th colspan=\"4\" style=\"text-align:center\">" + list_donhang[q].payload.DonHang.TongTien + "</th>" +
+                "</tr>";
+            document.getElementById("tr" + q + "").innerHTML = ele3.innerHTML;
+            // "Tổng số tiền cần thanh toán: " + list_donhang.payload.DonHang.TongTien + "VNĐ";
+        })
+    }*/
+
+
+</script>
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/styles2.css" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

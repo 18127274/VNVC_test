@@ -190,6 +190,9 @@ router.get('/tracuu', function (req, res, next) {
 router.get('/thongtindonhang', function (req, res, next) {
   res.render('thongtindonhang', {layout: 'customer'}) 
 });
+router.get('/chitietdonhang', function (req, res, next) {
+  res.render('chitietdonhang', {layout: 'customer'}) 
+});
 
 
 

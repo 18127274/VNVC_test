@@ -44,7 +44,7 @@
 							<div class="tab-content" id="list_cus">
 								<h3>Thông tin đơn hàng</h3>
 
-								<div id="concac" value="dasdas"> lon me may</div>
+							
 								{{!-- <div id="layoutSidenav_content">
 									<div class="container-fluid px-4">
 										<!-- Table -->
@@ -140,6 +140,10 @@
 	console.log(list_donhang);
 	console.log(list_donhang.payload.length);
 
+	function cac(id){
+		localStorage.setItem("luu_id_don", id);
+		console.log(id);
+	}
 	function list_view_cus2() {
 		// hien thi dc ten nguoi tiem, cac goi vac xin, trung tam tiem, tong tien
 
@@ -161,7 +165,7 @@
 				"</div>" +
 				"<div class=\"card-body\">" +
 				"<div class=\"table-responsive\">" +
-				"<a href=\"#demo" + t1 + "\" class=\"btn btn-primary\" data-toggle=\"collapse\" id = \"dh-" + t1 + "\" value = \"" + list_donhang.payload[t1].id + "\">" + "Xem đơn hàng" + "</a>" +
+				"<a href=\"#demo" + t1 + "\" class=\"btn btn-primary\" data-toggle=\"collapse\" id = \"dh-" + t1 + "\" value = \"" + list_donhang.payload[t1].id + "\" onclick = \"cac("+list_donhang.payload[t1].id+")\">" + "Xem đơn hàng" + "</a>" +
 				"<div id=\"demo" + t1 + "\" class=\"collapse\">" +
 				"<br>" +
 				"<div class=\"card-body\">" +
@@ -200,19 +204,21 @@
 
 	//view data thong tin chi tiet don hang ung voi tung don hang 
 
-	var element = document.getElementById("dh-0");
-	var text = element.getAttribute("id");
-	console.log(text);
-	console.log(typeof (text));
+	//var element = document.getElementById("dh-0");
+	//var text = element.getAttribute("id");
+	//console.log(text);
+	//console.log(typeof (text));
 
-	console.log(list_donhang);
+
+	/*console.log(list_donhang);
 	for (var q = 0; q < list_donhang.payload.length; q++){
 		ham_getdetailbooking_duatren_madonhang(list_donhang.payload[q].id, (chitietdonhang) => {
 			console.log("q lan: ", q);
 			console.log(list_donhang.payload[q].id);
 			console.log(chitietdonhang.payload.id);
 		})
-	}
+	}*/
+
 
 	/*for (var q = 0; q < list_donhang.payload.length; q++) {
 		var ele2 = document.getElementById("data_table_service_" + q + "");
