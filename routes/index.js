@@ -184,6 +184,12 @@ router.get('/tuvan_bacsi', function (req, res, next) {
 router.get('/dichvu_dangkytiem', function (req, res, next) {
   res.render('dichvu_dangkytiem', {layout: 'customer'}) 
 });
+router.get('/tracuu', function (req, res, next) {
+  res.render('tracuu', {layout: 'customer'}) 
+});
+router.get('/thongtindonhang', function (req, res, next) {
+  res.render('thongtindonhang', {layout: 'customer'}) 
+});
 
 
 
