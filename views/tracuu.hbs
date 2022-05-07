@@ -21,29 +21,43 @@
 
 		<div class="row">
 			<!-- Side widgets-->
-			
-				<!-- Search widget-->
-            <h2 class="text-primary">TRA CỨU THÔNG TIN ĐẶT GIỮ VẮC XIN</h2>
-            <p>Dùng số điện thoại đã đặt mua để đăng nhập hoặc đăng ký và tra cứu thông tin đơn hàng của quý khách.</p>
-           <form class="row" id="addsdt">
-                
+
+			<!-- Search widget-->
+			<h2 class="text-primary">TRA CỨU THÔNG TIN ĐẶT GIỮ VẮC XIN</h2>
+			<p>Dùng số điện thoại đã đặt mua để đăng nhập hoặc đăng ký và tra cứu thông tin đơn hàng của quý khách.</p>
+			<form class="row" id="addsdt">
+
 				<label for="validationDefault01" class="form-label"></label>
-				<input  type="text" class="form-control" id="name" required >
+				<input type="text" class="form-control" id="phone" required>
 			</form>
-            <form  style="text-align: left;" action="/thongtindonhang" id="#">
-						<input type="submit" class="btn btn-primary" value="Tiếp tục">
+			<form style="text-align: left;" id="search">
+				<input type="submit" class="btn btn-primary" value="Tra cứu">
 			</form>
-          
+
 			<!-- Blog entries-->
-
-
-
-
 		</div>
+
+
+
+
 	</div>
 </div>
 
 
+
+<script>
+	var form = document.getElementById('search');
+	form.addEventListener('submit', function (event) {
+		event.preventDefault();
+		var sdt = document.getElementById('phone').value;
+		console.log(sdt);
+
+		search_by_phone(sdt);
+
+
+	});
+
+</script>
 
 
 
@@ -52,51 +66,6 @@
 <script type='text/x-handlebars-template' id='allservices'></script>
 <script type='text/x-handlebars-template' id='data_table_service'> </script>
 
-{{!-- hien thi tat ca san pham hien co --}}
-<script>
-	function list_all_service1() {
-
-		document.getElementById("data_table_service").innerHTML = "";
-
-		list_all_service((result) => {
-			var birds = result;
-			console.log(result);
-			var ele = document.getElementById('data_table_service');
-			for (var i = 0; i < birds.payload.length; i++) {
-				ele.innerHTML = ele.innerHTML + "<tr>" +
-					"<td hidden>" + birds.payload[i].id + "</td>" +
-					"<td>" + birds.payload[i].Ten + "</td>" +
-					"<td>" + birds.payload[i].GiaTien + "</td></tr>";
-			}
-			/*"<a class=\"bi-cart-fill me-1\" onclick=\"add_service_tocart(" + birds.payload[0].id + ")\" id=\"detai\" >Chọn</a>" +*/
-			document.getElementById("data_table_service").innerHTML = ele.innerHTML;
-
-
-		});
-	}
-</script>
-
-{{!-- hien thi san pham theo danh muc --}}
-<script>
-	function list_service_bycategory(id) {
-		console.log(id);
-		document.getElementById("data_table_service").innerHTML = "";
-		getlistservice_byidcategory(id, (result) => {
-			var birds = result;
-			console.log(result);
-			var ele = document.getElementById('data_table_service');
-
-			for (var i = 0; i < birds.payload.length; i++) {
-
-				ele.innerHTML = ele.innerHTML + "<tr>" +
-					"<td hidden>" + birds.payload[i].id + "</td>" +
-					"<td>" + birds.payload[i].Ten + "</td>" +
-					"<td>" + birds.payload[i].GiaTien + "</td></tr>";
-			}
-			document.getElementById("data_table_service").innerHTML = ele.innerHTML;
-		});
-	}
-</script>
 
 
 

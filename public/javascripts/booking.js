@@ -473,6 +473,33 @@ function get_all_ques_by_category(id, callback) {
   );
 }
 
+function search_by_phone(id, callback) {
+  var array = [];
+  GET('http://localhost:8888/booking/get_booking_customer/' + id).then(res =>
+    res.json().then(data => {
+
+      var template = $('#service-table').html();
+      var compiled = Handlebars.compile(template);
+
+      var contextualHtml = compiled({ allservices: data });
+      $('#allservices').html(contextualHtml);
+      array = data;
+
+      if (data.code == 0) {
+        console.log(data);
+        localStorage.setItem("id_donhangne", JSON.stringify(data));
+        window.location = "http://localhost:8889/thongtindonhang";
+      }
+      else {
+        alert(data.message);
+      }
+     
+    })
+  );
+}
+
+
+
 
 
 
@@ -638,14 +665,14 @@ function add_question(hoten, gioitinh, tuoi, sdt, email1, address, cauhoi, loaic
   }).then(res =>
     res.json().then(data => {
       if (data.code == "0") {
-        alert("Gửi câu hỏi thành công"); 
+        alert("Gửi câu hỏi thành công");
         localStorage.setItem("id_question", data.payload.question_id);
       }
       else {
         /* alert.window("Tài khoản hoặc mật khẩu không đúng, vui lòng nhập lại"); */
         alert(data.message);
       }
-      
+
 
     })
   );
