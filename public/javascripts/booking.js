@@ -637,9 +637,15 @@ function add_question(hoten, gioitinh, tuoi, sdt, email1, address, cauhoi, loaic
 
   }).then(res =>
     res.json().then(data => {
-      console.log("add thanh cong");
-      console.log(data);
-      localStorage.setItem("id_question", data.payload.question_id);
+      if (data.code == "0") {
+        alert("Gửi câu hỏi thành công"); 
+        localStorage.setItem("id_question", data.payload.question_id);
+      }
+      else {
+        /* alert.window("Tài khoản hoặc mật khẩu không đúng, vui lòng nhập lại"); */
+        alert(data.message);
+      }
+      
 
     })
   );
