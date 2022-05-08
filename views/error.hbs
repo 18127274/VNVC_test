@@ -1,264 +1,120 @@
 
-<script type="text/javascript" src="../javascripts/booking.js"> </script>
+								{{!-- <div id="layoutSidenav_content">
+									<div class="container-fluid px-4">
+										<!-- Table -->
+										<div class="card shadow mb-2">
+											<div class="card-header py-3">
+												<h6 class="m-0 font-weight-bold text-primary">Thông tin đơn hàng 1
+												</h6>
+											</div>
+											<div class="card-body">
+												<div class="table-responsive">
+
+													{{!-- <a href="#demo1" class="btn btn-primary"
+														data-toggle="collapse">Xem
+														đơn hàng</a>
+													<div id="demo1" class="collapse"> --}}
+														<br>
+														<div class="card-body">
+															<div class="table-responsive">
+																<table class="table table-bordered" id="#" width="100%"
+																	cellspacing="0">
+																	<thead>
+																		<tr>
+																			<th>Tên</th>
+																			<th>Loại đơn hàng</th>
+																			<th>Các Gói/vắc xin</th>
+																			<th>Phương thức thanh toán</th>
+																			<th>Tình trạng đơn hàng</th>
+																			<th>Ngày lập đơn</th>
+																			<th>Ngày tiêm</th>
+																			<th>Thành tiền</th>
+
+																		</tr>
+
+																		<tr>
+																			<th colspan="4" style="text-align:center"
+																				id="tongtien"> Tổng tiền</th>
+																		</tr>
 
 
-<script>
-    var arr = [1, 2, ''];
-    console.log(arr);
+																	</thead>
 
-    arr = arr.filter(item => item !== '');
-    console.log(arr);
-
-    ham_timtengoivacxintheoid((result)=>{
-        console.log(result);
-    });
-
-    ham_timtenkhachhangtheoid("akRmeHcLX39OuQiWZj9ut", (result)=>{
-         console.log(result);
-    });
+																	<tbody id="data_table_service">
 
 
-function list_view_cus2() {
-    // hien thi dc ten nguoi tiem, cac goi vac xin, trung tam tiem, tong tien
-    var id_dh = localStorage.getItem("id_donhang");
-    console.log(id_dh);
-    console.log("tao vao roi ne");
+																	</tbody>
 
-    ham_getdetailbooking_duatren_madonhang(id_dh, (result) => {
-			console.log("chi tietdon hang", result);
-			var ele = document.getElementById('list_cus');
-			//xy ly di vao dschitiet 
-			for (var i = 0; i < result.payload.DSChiTiet.length; i++) {
-				ham_timtengoivacxintheoid((result1) => {
-					console.log("chi tiet goi tiem", result1);
-					console.log(result.payload.DSChiTiet.length);
-					console.log(i);
-					console.log(result.payload.DSChiTiet[i]);
-					console.log(result.payload.DSChiTiet[0]);
-					
-				})
-			}
-		});
+																</table>
 
-    ham_getdetailbooking_duatren_madonhang(id_dh, (result) => {
-            console.log("chi tietdon hang", result);
-            var ele = document.getElementById('list_cus');
-            //xy ly di vao dschitiet 
-            for (var i = 0; i <= result.payload.DSChiTiet.length; i++) {
-                ham_timtengoivacxintheoid((result1) => {
-                        console.log("chi tiet goi tiem", result1);
-                        for (var j = 0; j <= result.payload.DSChiTiet[i].DSmua; j++) {
-                            for (var k = 0; k <= result1.payload.length; k++) {
-                                console.log("id trong ds mua: ", result.payload.DSChiTiet[i].DSmua[j]);
-                                console.log("id trong get all vacxin: ", result1.payload[k].id);
-                                if (result.payload.DSChiTiet[i].DSmua[j] == result1.payload[k].id) { //so sanh id goi tiem
-                                    var string_goivx = string_goivx + result1.payload[k].Ten + ',';
-                                }
-                            }
-                            console.log("id kh trong ds mua: ", result.payload.DSChiTiet[i].MaKH);
-                            ham_timtenkhachhangtheoid(result.payload.DSChiTiet[i].MaKH, result2) => { // so sanh id kh
-                                ele.innerHTML = ele.innerHTML +
-                                    //ho ten(mqh), tengoivacxin, tong tien 
-                                    " <
-                                    div class = \"col-lg-6\">" + result2.Ten + '(' + result.payload.DSChiTiet[i].MoiQuanHe + ')' + "</div>
-                                " + " <
-                                p > < /p>
-                                "
-                                " <
-                                div class = \"col-lg-6\">" + string_goivx + "</div>
-                                " + " <
-                                p > < /p>
-                                "
-                                " <
-                                div class = \"col-lg-6\">" + result.payload.DonHang.TongTien + "</div>
-                                " + " <
-                                p > < /p>
-                                ";
-                                //view data len
-                            })
-                    }
-                })
-        }
-        document.getElementById("list_cus").innerHTML = ele.innerHTML;
-    });
-}
+															</div>
+														</div>
+														{{!--
+													</div> --}}
+													<a href="#demo1" class="btn btn-primary" data-toggle="collapse">Xem
+														chi tiết</a>
 
-/*ham_getdetailbooking_duatren_madonhang(id_dh, (result) => {
-			console.log("chi tietdon hang", result);
-			var ele = document.getElementById('list_cus');
-			//xy ly di vao dschitiet 
-			for (var i = 0; i <= result.payload.DSChiTiet.length; i++) {
-				ham_timtengoivacxintheoid((result1) => {
-					console.log("chi tiet goi tiem", result1);
-					for (var j = 0; j <= result.payload.DSChiTiet[i].DSmua; j++) {
-						for (var k = 0; k <= result1.payload.length; k++) {
-							console.log("id trong ds mua: ", result.payload.DSChiTiet[i].DSmua[j]);
-							console.log("id trong get all vacxin: ", result1.payload[k].id);
-							if (result.payload.DSChiTiet[i].DSmua[j] == result1.payload[k].id) { //so sanh id goi tiem
-								var string_goivx = string_goivx + result1.payload[k].Ten + ',';
-							}
+												</div>
+											</div>
+										</div>
 
-						}
-						console.log("id kh trong ds mua: ", result.payload.DSChiTiet[i].MaKH);
-						ham_timtenkhachhangtheoid(result.payload.DSChiTiet[i].MaKH, result2) => {// so sanh id kh
-							ele.innerHTML = ele.innerHTML +
-								//ho ten(mqh), tengoivacxin, tong tien 
-								"<div class=\"col-lg-6\">" + result2.Ten + '(' + result.payload.DSChiTiet[i].MoiQuanHe + ')' + "</div>" + "<p></p>"
-							"<div class=\"col-lg-6\">" + string_goivx + "</div>" + "<p></p>"
-							"<div class=\"col-lg-6\">" + result.payload.DonHang.TongTien + "</div>" + "<p></p>";
-							//view data len
-						});
-			}
-		});
-	}
-	document.getElementById("list_cus").innerHTML = ele.innerHTML;
-		}); */
-</script>
+									</div>
+								</div> --}}
+
+								{{!-- <div id="layoutSidenav_content">
+									<div class="container-fluid px-4">
+										<!-- Table -->
+										<div class="card shadow mb-2">
+											<div class="card-header py-3">
+												<h6 class="m-0 font-weight-bold text-primary">Thông tin đơn hàng 1
+												</h6>
+											</div>
+											<div class="card-body">
+												<div class="table-responsive">
+
+													<a href="#demo1" class="btn btn-primary" data-toggle="collapse">Xem
+														đơn hàng</a>
+													<div id="demo1" class="collapse">
+														<br>
+														<div class="card-body">
+															<div class="table-responsive">
+																<table class="table table-bordered" id="#" width="100%"
+																	cellspacing="0">
+																	<thead>
+																		<tr>
+																			<th>Tên</th>
+																			<th>Loại đơn hàng</th>
+																			<th>Các Gói/vắc xin</th>
+																			<th>Phương thức thanh toán</th>
+																			<th>Tình trạng đơn hàng</th>
+																			<th>Ngày lập đơn</th>
+																			<th>Ngày tiêm</th>
+																			<th>Thành tiền</th>
+
+																		</tr>
+
+																		<tr>
+																			<th colspan="4" style="text-align:center"
+																				id="tongtien"> Tổng tiền</th>
+																		</tr>
 
 
+																	</thead>
 
-<script>
-	function list_all_category_vacxin(id, id_menu) {
-		console.log(id);
-		console.log(id_menu);
-		document.getElementById(id_menu).innerHTML = "";
-
-		if (id = 0) {
-			get_all_phanloai((result)=>{
-				for (var i = 0; i < result.payload.length; i++) {
-					list_all_goivacxin((result1)=>{
-					for (var j = 0; j < birds.payload.length; j++) {
-						ele.innerHTML = ele.innerHTML +
-						"<ul id=\"category-tabs\">" + 
-						"<li>" +" <a href=\"javascript:void\" class=\"main-category\">" + payload[i].Ten</a>
-						<ul class="list-group">
-						<li class="list-group-item">
-						<input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-										
-						</li>
-						</ul>
-						</li>
-						</ul>
-					}
-					});
-				}
-				document.getElementById(id_menu).innerHTML = ele.innerHTML;
-			})
-
-			list_all_goivacxin((result) => {
-				var birds = result;
-				console.log(result);
-				var ele = document.getElementById(id_menu);
-				for (var i = 0; i < birds.payload.length; i++) {
-					ele.innerHTML = ele.innerHTML +
-					"<ul id=\"category-tabs\">" + 
-					"<li>" +" <a href=\"javascript:void\" class=\"main-category\">" + payload.</a>
-					<ul class="list-group">
-					<li class="list-group-item">
-					<input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-										Gói vắc xin linh động
-					</li>
-					</ul>
-					</li>
-					</ul>
-				}
-				document.getElementById(id_menu).innerHTML = ele.innerHTML;
-			});
-		}
-		else {
-
-		}
+																	<tbody id="data_table_service">
 
 
-	}
-</script>
+																	</tbody>
 
+																</table>
 
+															</div>
+														</div>
+													</div>
 
+												</div>
+											</div>
+										</div>
 
-		console.log("vao k lan: " k);
-							if (result.payload.DSChiTiet[i].DSMua[j] == result1.payload[k].id) {
-								//console.log("k", k);
-								//console.log(result.payload.DSChiTiet[i].DSMua[j]);
-								//console.log(result1.payload[k].id);
-								string_goivx = string_goivx + ',' + result1.payload[k].Ten;
-								console.log(string_goivx);
-							}
-							//console.log("id kh trong ds mua: ", result.payload.DSChiTiet[i].MaKH);
-							//console.log("mqh: ", result.payload.DSChiTiet[i].MoiQuanHe);
-							//console.log("i1: ", i);
-							//console.log("i o ngoai: ", i);
-							ham_timtenkhachhangtheoid(result.payload.DSChiTiet[i].MaKH, (result2) => {// so sanh id kh
-							//console.log(result2.payload.length);
-								for (var t = 0; t < result2.payload.length; t++) {
-									//console.log("i o trong: ", i);
-									//console.log(result2);
-									//console.log(result2.payload[t].Ten);
-								}
-								//console.log("i2: ", i);
-
-								//console.log("mqh: ", result.payload.DSChiTiet[i].MoiQuanHe);
-								/*ele.innerHTML = ele.innerHTML +
-									//ho ten(mqh), tengoivacxin, tong tien 
-								"<div class=\"col-lg-6\">" + result2.payload.Ten + '(' + result.payload.DSChiTiet[i].MoiQuanHe + ')' + "</div>" + "<p></p>"
-								"<div class=\"col-lg-6\">" + string_goivx + "</div>" + "<p></p>"
-								"<div class=\"col-lg-6\">" + result.payload.DonHang.TongTien + "</div>" + "<p></p>";*/
-								//console.log(ele);
-								//view data len
-							});
-							//console.log(result.payload.DSChiTiet[i].DSMua[j]);
-							//console.log(i);
-							//console.log(j);
-							///console.log(k);
-							//console.log("do dai all dschitiet: ", result.payload.DSChiTiet.length);
-							//console.log("do dai cua 1 ds mua: ",  result.payload.DSChiTiet[i].DSMua.length);
-							//console.log("do dai mang all vacxin: ", result1.payload.length);
-							//doan code nay check xem sao ko hien thi ra dc dsmua :)))))))
-							//console.log("dschitiet: ", result.payload.DSChiTiet);
-							//log("dschitiet: ", result.payload.DSChiTiet[0]);
-							//console.log("dschitiet[0]: ", result.payload.DSChiTiet[i].DSmua[0]);
-
-							//console.log("id trong ds mua: ", result.payload.DSChiTiet[i].PhanLoaiDS);
-							//console.log("id trong get all vacxin: ", result1.payload[k].id);
-
-
-							/*"<div id=\"guicautraloi\" class=\"modal fade\" role=\"dialog\">" +
-	"<div class=\"modal-dialog\">" +
-
-		"<div class=\"modal-content\">" +
-			"<div class=\"modal-header\">" +
-				"<h4 class=\"modal-title\">Thông báo</h4>" +
-				"</div>" +
-			"<div class=\"modal-body\">" +
-				"<p>Gửi thành công</p>" +
-				"</div>" +
-			"<div class=\"modal-footer\">" +
-				"<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Close</button>" +
-				"</div>" +
-			"</div>" +
-		"</div>" +
-	"</div>";*/
-
-
-	"<div class=\"card shadow mb-2\">" +
-					"<div class=\"card-header py-3\">" +
-					"<ul>" +
-					"<li>" +
-					"<h5 style=\"color:rgb(10, 10, 126);\">" +
-					"<b>" +
-					result.payload[i].question_content +
-					"</b>" +
-					"</h5>" +
-					"<h6>" + result.payload[i].customer_info.name + ',' + result.payload[i].customer_info.address + "</h6>" +
-					"<a href=\"#demo\" class=\"btn btn-primary\" data-toggle=\"collapse\">Trả lời</a>" +
-					"<div id=\"demo\" class=\"collapse\">" +
-					"<br>" +
-					"<textarea class=\"form-control\" id=\"ans\" rows=\"3\"></textarea>" +
-					"<form id=\"post_ans\">" +
-					"<input type=\"submit\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#guicautraloi\" value=\"Gửi câu trả lời\">" +
-					"</form>" +
-					"</div>" +
-					"</li>" +
-					"</ul>" +
-					"</div>" +
-					"</div>";
+									</div>
+								</div> --}}

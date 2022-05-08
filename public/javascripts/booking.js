@@ -686,7 +686,7 @@ function post_answer(id_ques, ans_content, id_hot) {
   }).then(res =>
     res.json().then(data => {
       if (data.code == "0") {
-        /*  alert(data.message); */
+         alert("Gửi thành công"); 
       }
       else {
         /* alert.window("Tài khoản hoặc mật khẩu không đúng, vui lòng nhập lại"); */

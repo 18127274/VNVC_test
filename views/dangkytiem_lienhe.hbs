@@ -222,7 +222,7 @@
 		var cookie_id = localStorage.getItem("cookie_cart");
 		var hoten = document.getElementById('name').value;
 		var sdt = document.getElementById('phone').value;
-		sdt = sdt.slice(3);
+		//sdt = sdt.slice(3);
 		var cmnd = document.getElementById('socmnd').value;
 
 		var email1 = document.getElementById('email').value;
@@ -234,12 +234,15 @@
 		ptthanhtoan = parseInt(ptthanhtoan, 10);
 		var ngaylapdon = Date();
 
+		console.log("day la le hay goi: ", le_hay_goi);
 		if (le_hay_goi == 0) {
-			var phanloaids = 0;
+			var phanloaids = 1;
 			phanloaids = parseInt(phanloaids, 10);
+			console.log("dat mua ne");
 		}
 		else {
-			var phanloaids = 1;
+			var phanloaids = 0;
+			console.log("dang ky tiem ne");
 			phanloaids = parseInt(phanloaids, 10);
 		}
 
